@@ -1,0 +1,83 @@
+/**
+* Create by soi 2015/10/18
+*/
+header {
+    width: 100%;
+    text-align: center;
+    padding: 2em;
+}
+
+header h1 {
+    margin: .9em 0 0 0;
+    padding: 0;
+    font-weight: 300;
+    font-size: 1.4em;
+    line-height: 1.4;
+    -webkit-backface-visibility: hidden;
+    color: #ffffff;
+}
+
+header p {
+    font-size: 1em;
+    margin: .1em 0 .6em;
+    display: inline-block;
+    font-style: italic;
+    padding: 6px 10px;
+    color: #ffffff;
+    border-radius: 4px;
+    line-height: 1;
+}
+
+header img {
+    max-height: 160px;
+    border-radius: 50%;
+}
+
+header nav ul.hide-on-med-and-down {
+    width: 100%;
+    min-height: 60px;
+}
+
+.circle {
+    border-radius: 50%;
+}
+
+.section {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.fade-in {
+    opacity: 0;
+    transform-origin: 0 50%;
+}
+
+.section-title {
+    position: relative;
+    margin-bottom: 1em;
+    font-size: 22px;
+    font-weight: 400;
+    text-align: left;
+}
+
+.indigo-text {
+    color: #3f51b5 !important;
+}
+
+h2 {
+    font-size: 3.56rem;
+    line-height: 110%;
+    margin: 1.78rem 0 1.424rem 0;
+}
+
+.mobile-mode {
+    background-color: #3f51b5;
+}
+
+.mobile-mode li {
+    color: #039be5;
+}
+
+.mobile-mode li a {
+    color: #ffffff;
+}

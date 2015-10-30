@@ -1,10 +1,10 @@
 /**
 * Create by soi 2015/10/18
 */
+
 header {
     width: 100%;
     text-align: center;
-    padding: 2em;
 }
 
 header h1 {
@@ -43,10 +43,10 @@ header img {
     border-radius: 50%;
 }
 
-header nav ul.hide-on-med-and-down {
+/*header nav ul.hide-on-med-and-down {
     width: 100%;
     min-height: 60px;
-}
+}*/
 
 .circle {
     border-radius: 50%;

@@ -1,0 +1,72 @@
+<%
+var head = {
+include("/front/layout/head.html"){}
+};
+var body = {
+%>
+<%
+include("/front/layout/header.html"){}
+%>
+<div class="section fade-in" id="index-banner" style="display: block; opacity: 1;">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m8">
+                <div class="card">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" src="/assets/images/office.jpg">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator indigo-text text-darken-4">关于我&nbsp;|&nbsp;About Me<i
+                                class="mdi-navigation-more-vert right"></i></span>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title indigo-text text-darken-4">关于我&nbsp;|&nbsp;About Me<i
+                                class="mdi-navigation-close right"></i></span>
+
+                        <p>I'm Soi---source of infection.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col s12 m4">
+                <div class="collection with-header z-depth-1">
+                    <div class="collapsible-header indigo-text text-darken-4"> 最新文章&nbsp;|&nbsp;Latest</div>
+                    <a href="/article/detail/1.html" class="collection-item waves-effect waves-light">Alvin</a>
+                    <a href="#!" class="collection-item waves-effect waves-light">Alvin</a>
+                    <a href="#!" class="collection-item waves-effect waves-light">Alvin</a>
+                    <a href="#!" class="collection-item waves-effect waves-light">Alvin</a>
+                    <a href="#!" class="collection-item waves-effect waves-light">Alvin</a>
+                </div>
+
+                <div class="collection with-header z-depth-1">
+                    <div class="collapsible-header indigo-text text-darken-4"> 最热文章&nbsp;|&nbsp;Hot</div>
+                    <a href="/article/detail/1.html" class="collection-item waves-effect waves-light">Alvin</a>
+                    <a href="#!" class="collection-item waves-effect waves-light">Alvin</a>
+                    <a href="#!" class="collection-item waves-effect waves-light">Alvin</a>
+                    <a href="#!" class="collection-item waves-effect waves-light">Alvin</a>
+                    <a href="#!" class="collection-item waves-effect waves-light">Alvin</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="#top" class="btn-floating btn-large waves-effect waves-light blue right">Top</a>
+</div>
+<%
+include("/front/layout/footer.html"){}
+%>
+<script>
+    <!-- document load finished to do sth. -->
+    $(document).ready(function () {
+        console.log("init mobile mode nav");
+        $(".button-collapse").sideNav();
+    });
+
+
+</script>
+<%
+};
+%>
+
+<%
+layout("/front/layout/_layout.html",{head:head,body:body}){}
+%>

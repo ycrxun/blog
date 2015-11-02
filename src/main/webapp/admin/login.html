@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge;Chrome=1">
+    <meta name="renderer" content="webkit"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/images/favicon.ico">
+    <title>后台登录</title>
+    <!-- 引入Materialize css -->
+    <link rel="stylesheet" href="../assets/materialize/css/materialize.min.css">
+    <link rel="stylesheet" href="../assets/css/prism.css">
+    <link rel="stylesheet" href="../assets/css/style-fullscreen.css">
+    <link href="../assets/materialize/js/plugins/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="screen,projection">
+
+    <style>
+        html, body {
+            height: 100%;
+        }
+
+        html {
+            display: table;
+            margin: auto;
+        }
+
+        body {
+            display: table-cell;
+            vertical-align: middle;
+            background-color : #00bcd4 !important;
+        }
+
+    </style>
+</head>
+<body>
+<div id="login-page" class="row" style="width: 400px;">
+    <div class="col s12 z-depth-4 card-panel">
+        <form class="login-form">
+            <div class="row margin">
+                <div class="input-field col s12 center">
+                    <h5 class="center login-form-text teal-text">后台登录</h5>
+                </div>
+            </div>
+            <div class="row margin">
+                <div class="input-field col s12 center">
+                    <i class="mdi-social-person-outline prefix"></i>
+                    <input id="username" type="text">
+                    <label for="username" class="center-align">用户名</label>
+                </div>
+            </div>
+            <div class="row margin">
+                <div class="input-field col s12">
+                    <i class="mdi-action-lock-outline prefix"></i>
+                    <input id="password" type="password">
+                    <label for="password">密&nbsp;&nbsp;码</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12 m12 l12  login-text">
+                    <input type="checkbox" id="remember-me"/>
+                    <label for="remember-me">记住密码</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <a href="index.html" class="btn waves-effect waves-light col s12">登录</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="../assets/js/jq/jquery-1.11.3.js"></script>
+<script src="../assets/materialize/js/materialize.min.js"></script>
+<!--prism-->
+<script src="../assets/materialize/js/prism.js"></script>
+<!--scrollbar-->
+<script src="../assets/materialize/js/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+<!--plugins.js - Some Specific JS codes for Plugin Settings-->
+<script src="../assets/materialize/js/plugins.js"></script>
+</body>
+</html>

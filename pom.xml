@@ -15,8 +15,14 @@
 
         <junit.version>4.11</junit.version>
         <jfinal.version>2.0</jfinal.version>
+        <jfinal.ext.version>3.1.4</jfinal.ext.version>
         <beetl.version>2.2.6</beetl.version>
+        <beetl.sql.version>1.2.0</beetl.sql.version>
         <log4j.version>1.2.17</log4j.version>
+        <druid.version>1.0.16</druid.version>
+        <fastjson.version>1.2.7</fastjson.version>
+        <mysql.driver.version>5.1.37</mysql.driver.version>
+        <servlet.version>3.1.0</servlet.version>
 
     </properties>
 
@@ -55,8 +61,10 @@
                         <include>assets/**/*.css</include>
                     </includes>
                     <excludes>
-                        <exclude>assets/common/**/**.js</exclude>
-                        <exclude>assets/common/**/**.css</exclude>
+                        <exclude>assets/**/**.min.js</exclude>
+                        <exclude>assets/**/**.min.css</exclude>
+                        <exclude>assets/materialize/js/**/*.js</exclude>
+                        <exclude>assets/materialize/js/**/*.css</exclude>
                     </excludes>
                 </configuration>
             </plugin>
@@ -97,9 +105,20 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>${servlet.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
             <groupId>com.jfinal</groupId>
             <artifactId>jfinal</artifactId>
             <version>${jfinal.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.jfinal</groupId>
+            <artifactId>jfinal-ext</artifactId>
+            <version>${jfinal.ext.version}</version>
         </dependency>
         <dependency>
             <groupId>com.ibeetl</groupId>
@@ -107,9 +126,29 @@
             <version>${beetl.version}</version>
         </dependency>
         <dependency>
+            <groupId>com.ibeetl</groupId>
+            <artifactId>beetlsql</artifactId>
+            <version>${beetl.sql.version}</version>
+        </dependency>
+        <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
             <version>${log4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastjson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>${druid.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.driver.version}</version>
         </dependency>
     </dependencies>
 </project>

@@ -1,0 +1,98 @@
+<!-- html 5 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+
+    <title>首页</title>
+
+    <!-- 引入Materialize css -->
+    <link rel="stylesheet" href="../assets/materialize/css/materialize.css">
+    <link rel="stylesheet" href="../assets/css/prism.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/style-fullscreen.css">
+    <link rel="stylesheet" href="../assets/materialize/js/plugins/chartist-js/chartist.min.css"
+          media="screen,projection">
+    <link rel="stylesheet" href="../markdown/css/editormd.min.css">
+
+</head>
+<body>
+
+<header id="header" class="page-topbar">
+    <div class="navbar-fixed">
+        <nav class="cyan">
+            <div class="nav-wrapper">
+                <ul class="left">
+                    <li>
+                        <h1 class="logo-wrapper">
+                            <a href="#" class="brand-logo darken-1">
+                                博客后台
+                            </a>
+                        </h1>
+                    </li>
+                </ul>
+                <div class="header-search-wrapper hide-on-med-and-down">
+                    <i class="mdi-action-search"></i>
+                    <input type="text" name="Search" class="header-search-input z-depth-2"
+                           placeholder="搜索"/>
+                </div>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="javascript:void(0);" class="waves-effect waves-block waves-light toggle-fullscreen"><i
+                            class="mdi-action-settings-overscan"></i></a>
+                    </li>
+                    <li><a href="javascript:void(0);" class="waves-effect waves-block waves-light"><i
+                            class="mdi-navigation-apps"></i></a>
+                    </li>
+                    <li><a href="javascript:void(0);" class="waves-effect waves-block waves-light"><i
+                            class="mdi-social-notifications"></i></a>
+                    </li>
+                    <li><a href="#" data-activates="chat-out"
+                           class="waves-effect waves-block waves-light chat-collapse"><i
+                            class="mdi-communication-chat"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<div id="main" class="">
+
+</div>
+
+<script src="../assets/js/jq/jquery-1.11.3.js"></script>
+<script src="../assets/materialize/js/materialize.min.js"></script>
+<script src="../markdown/editormd.min.js"></script>
+
+<script>
+    var md_editor;
+    $(document).ready(function(){
+        console.info("document load finish...");
+        // You can custom Emoji's graphics files url path
+        editormd.emoji     = {
+            path  : "http://www.emoji-cheat-sheet.com/graphics/emojis/",
+            ext   : ".png"
+        };
+
+        // Twitter Emoji (Twemoji)  graphics files url path
+        editormd.twemoji = {
+            path : "http://twemoji.maxcdn.com/72x72/",
+            ext  : ".png"
+        };
+
+        md_editor = editormd("md_editor",{
+            width:"100%",
+            height:500,
+            syncScrolling:"single",
+            path:"../markdown/lib/",
+            watch:false,
+            toc : true,
+            emoji : true,// Support Github emoji, Twitter Emoji(Twemoji), fontAwesome, Editor.md logo emojis.
+            taskList : true
+        });
+    });
+</script>
+</body>
+</html>

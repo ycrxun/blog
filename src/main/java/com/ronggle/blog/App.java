@@ -11,8 +11,11 @@ import com.jfinal.plugin.druid.DruidPlugin;
 import com.ronggle.blog.controller.admin.IndexController;
 import com.ronggle.blog.controller.client.ClientController;
 import com.ronggle.blog.handler.Htmlhandler;
+import com.ronggle.blog.handler.XssHanlder;
+import com.ronggle.blog.model.Article;
 import com.ronggle.blog.model.DbType;
 import com.ronggle.blog.model.Dict;
+import com.ronggle.blog.model.Reply;
 import org.beetl.ext.jfinal.BeetlRenderFactory;
 
 /**
@@ -69,6 +72,9 @@ public class App extends JFinalConfig {
         local_arp.setDevMode(prop.getBoolean("app.dev.mode", false));
         local_arp.setShowSql(local_arp.getDevMode());
 
+        local_arp.addMapping("article", Article.class);
+        local_arp.addMapping("reply", Reply.class);
+
         plugins.add(local_arp);
     }
 
@@ -79,6 +85,9 @@ public class App extends JFinalConfig {
 
     @Override
     public void configHandler(Handlers handlers) {
+        //处理.html后缀的请求
         handlers.add(new Htmlhandler());
+        //排除后台管理请求的Xss过滤
+        handlers.add(new XssHanlder("/admin"));
     }
 }

@@ -3,19 +3,19 @@ package com.ronggle.blog;
 import com.alibaba.druid.filter.stat.StatFilter;
 import com.alibaba.druid.wall.WallFilter;
 import com.jfinal.config.*;
+import com.jfinal.ext.handler.ContextPathHandler;
+import com.jfinal.kit.HashKit;
 import com.jfinal.kit.Prop;
 import com.jfinal.kit.PropKit;
 import com.jfinal.log.Logger;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.druid.DruidPlugin;
-import com.ronggle.blog.controller.admin.IndexController;
+import com.ronggle.blog.controller.admin.AdminArticleController;
+import com.ronggle.blog.controller.admin.AdminIndexController;
 import com.ronggle.blog.controller.client.ClientController;
 import com.ronggle.blog.handler.Htmlhandler;
 import com.ronggle.blog.handler.XssHanlder;
-import com.ronggle.blog.model.Article;
-import com.ronggle.blog.model.DbType;
-import com.ronggle.blog.model.Dict;
-import com.ronggle.blog.model.Reply;
+import com.ronggle.blog.model.*;
 import org.beetl.ext.jfinal.BeetlRenderFactory;
 
 /**
@@ -42,7 +42,8 @@ public class App extends JFinalConfig {
     }
 
     private void adminRoutes(Routes routes) {
-        routes.add("/admin", IndexController.class,Dict.Admin);
+        routes.add("/admin", AdminIndexController.class,Dict.Admin);
+        routes.add("/admin/article", AdminArticleController.class,Dict.Admin);
     }
 
     private void clientRoutes(Routes routes) {
@@ -72,8 +73,11 @@ public class App extends JFinalConfig {
         local_arp.setDevMode(prop.getBoolean("app.dev.mode", false));
         local_arp.setShowSql(local_arp.getDevMode());
 
+        local_arp.addMapping("account", Account.class);
         local_arp.addMapping("article", Article.class);
         local_arp.addMapping("reply", Reply.class);
+        local_arp.addMapping("link",Link.class);
+        local_arp.addMapping("menu",Menu.class);
 
         plugins.add(local_arp);
     }
@@ -85,9 +89,16 @@ public class App extends JFinalConfig {
 
     @Override
     public void configHandler(Handlers handlers) {
+        //global context
+        handlers.add(new ContextPathHandler("ctx"));
         //处理.html后缀的请求
         handlers.add(new Htmlhandler());
         //排除后台管理请求的Xss过滤
         handlers.add(new XssHanlder("/admin"));
     }
+
+    public static void main(String[] args) {
+        System.out.println(HashKit.md5("admin"));
+    }
+
 }

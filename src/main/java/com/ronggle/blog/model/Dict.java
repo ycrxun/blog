@@ -10,4 +10,5 @@ public class Dict {
     public static final String Front = "front";
     public static final String Admin = "admin";
     public static final Integer PageSize = 10;
+    public static final String ADMIN_SESSION = "admin_session";
 }

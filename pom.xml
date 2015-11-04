@@ -62,6 +62,7 @@
                     </includes>
                     <excludes>
                         <exclude>assets/**/**.min.js</exclude>
+                        <exclude>assets/**/amazeui.js</exclude>
                         <exclude>assets/**/**.min.css</exclude>
                         <exclude>assets/materialize/js/**/*.js</exclude>
                         <exclude>assets/materialize/js/**/*.css</exclude>
@@ -96,8 +97,8 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <version>2.4</version>
                 <configuration>
-                    <warName>ROOT</warName>
-                    <warSourceExcludes>assets/js/**/*.js,assets/**/*.css</warSourceExcludes>
+                    <warName>blog</warName>
+                   <!-- <warSourceExcludes>assets/js/**/*.js,assets/**/*.css</warSourceExcludes>-->
                     <webResources>
                         <resource>
                             <directory>src/main/resources/${package.environment}</directory>
@@ -107,6 +108,7 @@
                     </webResources>
                 </configuration>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>

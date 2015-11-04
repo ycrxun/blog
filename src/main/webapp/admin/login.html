@@ -34,7 +34,7 @@
 <body>
 <div id="login-page" class="row" style="width: 400px;">
     <div class="col s12 z-depth-4 card-panel">
-        <form class="login-form">
+        <form class="login-form" action="/admin/token" method="post">
             <div class="row margin">
                 <div class="input-field col s12 center">
                     <h5 class="center login-form-text teal-text">后台登录</h5>
@@ -43,14 +43,14 @@
             <div class="row margin">
                 <div class="input-field col s12 center">
                     <i class="mdi-social-person-outline prefix"></i>
-                    <input id="username" type="text">
+                    <input id="username" name="account.username" type="text">
                     <label for="username" class="center-align">用户名</label>
                 </div>
             </div>
             <div class="row margin">
                 <div class="input-field col s12">
                     <i class="mdi-action-lock-outline prefix"></i>
-                    <input id="password" type="password">
+                    <input id="password" name="account.password" type="password">
                     <label for="password">密&nbsp;&nbsp;码</label>
                 </div>
             </div>
@@ -62,7 +62,7 @@
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <a href="index.html" class="btn waves-effect waves-light col s12">登录</a>
+                    <button type="submit" class="btn waves-effect waves-light col s12">登录</button>
                 </div>
             </div>
         </form>

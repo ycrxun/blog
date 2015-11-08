@@ -4,7 +4,7 @@ $(document).ready(function(){
     editor = editormd("md_editor",{
        width:"90%",
        height:500,
-       path:"../markdown/lib/",
+       path:"/markdown/lib/",
        //theme : "dark",
        //previewTheme : "dark",
        //editorTheme : "pastel-on-dark",

@@ -112,10 +112,10 @@
             <!-- 文章标题 -->
             <div class="am-g am-margin-top">
                 <div class="am-u-sm-4 am-u-md-2 am-text-right">
-                    ${article.title!}
+                    文章标题
                 </div>
                 <div class="am-u-sm-8 am-u-md-4">
-                    <input type="text" class="am-input-sm">
+                    <input type="text" class="am-input-sm" value="${article.title!}">
                 </div>
                 <div class="am-hide-sm-only am-u-md-6">*必填，不可重复</div>
             </div>
@@ -123,26 +123,29 @@
             <!--文章分类-->
             <div class="am-g am-margin-top">
                 <div class="am-u-sm-4 am-u-md-2 am-text-right">
-                    ${article.article_type!}
+                    文章分类
                 </div>
                 <div class="am-u-sm-8 am-u-md-4 am-u-end col-end">
-                    <input type="text" class="am-input-sm">
+                    <input type="text" class="am-input-sm" value="${article.article_type!}">
                 </div>
             </div>
 
             <!--内容摘要-->
             <div class="am-g am-margin-top">
                 <div class="am-u-sm-4 am-u-md-2 am-text-right">
-                    ${article.intro!}
+                    内容摘要
                 </div>
                 <div class="am-u-sm-8 am-u-md-4">
-                    <input type="text" class="am-input-sm">
+                    <input type="text" class="am-input-sm" value="${article.intro!}">
                 </div>
                 <div class="am-u-sm-12 am-u-md-6">不填写则自动截取内容前255字符</div>
             </div>
 
             <!--内容描述-->
             <div class="am-g am-margin-top-sm">
+                <div class="am-u-sm-4 am-u-md-2 am-text-right">
+                    内容描述
+                </div>
                 <div class="am-u-sm-12 am-u-md-10" id="md_editor">
                     <textarea>${article.content!}</textarea>
                 </div>

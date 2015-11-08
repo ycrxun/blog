@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1">
     <meta name="renderer" content="webkit">
-
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/images/favicon.ico">
     <title>首页</title>
 
     <!-- 引入Amaze css -->
@@ -51,7 +51,7 @@
     <div class="admin-sidebar am-offcanvas" id="admin-offcanvas">
         <div class="am-offcanvas-bar admin-offcanvas-bar">
             <ul class="am-list admin-sidebar-list">
-                <li><a href="index.html"><span class="am-icon-home"></span> 首页</a></li>
+                <li><a href="/admin"><span class="am-icon-home"></span> 首页</a></li>
                 <li class="admin-parent">
                     <a class="am-cf" data-am-collapse="{target: '#collapse-system-nav'}"><span
                             class="am-icon-cogs"></span>
@@ -102,12 +102,12 @@
 
         <!-- 访问统计 -->
         <ul class="am-avg-sm-1 am-avg-md-3 am-margin am-padding am-text-center admin-content-list ">
-            <li><a href="#" class="am-text-success"><span class="am-icon-btn am-icon-file-text"></span><br/>新增访客<br/>100</a>
+            <li><a id="todayVisitor" href="javascript:;" class="am-text-success"></a>
             </li>
-            <li><a href="#" class="am-text-warning"><span class="am-icon-btn am-icon-briefcase"></span><br/>总访客数<br/>3080</a>
+            <li><a id="yesterdayVisitor" href="javascript:;" class="am-text-warning"></a>
             </li>
-            <li><a href="#" class="am-text-danger"><span
-                    class="am-icon-btn am-icon-recycle"></span><br/>昨日访客<br/>200</a></li>
+            <li><a id="totalVisitor" href="javascript:;" class="am-text-danger"></a>
+            </li>
         </ul>
 
         <!-- 消息面板 -->
@@ -115,10 +115,10 @@
             <!--左边-->
             <div class="am-u-md-6">
                 <div class="am-panel am-panel-default">
-                    <div class="am-panel-hd am-cf" data-am-collapse="{target: '#collapse-panel-new-reply'}">最新评论<span
+                    <div class="am-panel-hd am-cf" data-am-collapse="{target: '#collapse-panel-hot'}">最热文章<span
                             class="am-icon-chevron-down am-fr"></span></div>
-                    <div class="am-panel-bd am-collapse am-in" id="collapse-panel-new-reply">
-                        <ul class="am-list">
+                    <div class="am-panel-bd am-collapse am-in" id="collapse-panel-hot">
+                        <ul id="hot_list" class="am-list">
                             <li><a href="#">Balalalala</a></li>
                             <li><a href="#">Balalalala</a></li>
                             <li><a href="#">Balalalala</a></li>
@@ -134,7 +134,7 @@
                         无人评论<span
                             class="am-icon-chevron-down am-fr"></span></div>
                     <div class="am-panel-bd am-collapse am-in" id="collapse-panel-no-reply">
-                        <ul class="am-list">
+                        <ul id="not_reply_list" class="am-list">
                             <li><a href="#">Balalalala</a></li>
                             <li><a href="#">Balalalala</a></li>
                             <li><a href="#">Balalalala</a></li>
@@ -167,7 +167,7 @@
 <!--<![endif]-->
 <script src="/assets/amazeui/js/amazeui.min.js"></script>
 
-<script src="/markdown/editormd.min.js"></script>
+<script src="/assets/js/index.js"></script>
 
 </body>
 </html>

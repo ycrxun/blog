@@ -7,5 +7,10 @@ import com.ronggle.blog.model.Account;
  */
 public interface AccountService {
 
+    /**
+     * token user account and password-user login
+     * @param account user account model
+     * @return account
+     */
     Account token(Account account);
 }

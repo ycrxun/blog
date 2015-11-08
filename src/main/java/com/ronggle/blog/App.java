@@ -42,8 +42,8 @@ public class App extends JFinalConfig {
     }
 
     private void adminRoutes(Routes routes) {
-        routes.add("/admin", AdminIndexController.class,Dict.Admin);
-        routes.add("/admin/article", AdminArticleController.class,Dict.Admin);
+        routes.add("/admin", AdminIndexController.class, Dict.Admin);
+        routes.add("/admin/article", AdminArticleController.class, Dict.Admin);
     }
 
     private void clientRoutes(Routes routes) {
@@ -76,8 +76,9 @@ public class App extends JFinalConfig {
         local_arp.addMapping("account", Account.class);
         local_arp.addMapping("article", Article.class);
         local_arp.addMapping("reply", Reply.class);
-        local_arp.addMapping("link",Link.class);
-        local_arp.addMapping("menu",Menu.class);
+        local_arp.addMapping("link", Link.class);
+        local_arp.addMapping("menu", Menu.class);
+        local_arp.addMapping("visitor", Visitor.class);
 
         plugins.add(local_arp);
     }

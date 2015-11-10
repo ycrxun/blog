@@ -42,4 +42,18 @@ public interface ArticleService {
      * @return page
      */
     Page<Article> findArticle(Integer pageNow, Integer pageSize);
+
+    /**
+     * delete article by id
+     * @param articleId article id
+     * @return boolean
+     */
+    boolean delete(String articleId);
+
+    /**
+     * update article hit
+     * @param articleId article id
+     * @return boolean
+     */
+    boolean updateHit(String articleId);
 }

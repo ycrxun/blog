@@ -37,7 +37,7 @@ public class ClientController extends BaseController {
     public void article(){
         pageNow = getParaToInt(0) > 0 ? getParaToInt(0) : 1;
         pageSize = getParaToInt(1) > 0 ? getParaToInt(1) : pageSize;
-        render("article.html");
+        setAttr("page",articleService.findArticle(pageNow,pageSize)).render("article.html");
     }
 
     /**
@@ -46,6 +46,8 @@ public class ClientController extends BaseController {
     @ActionKey("/article/detail")
     public void detail(){
         String articleId = getPara(0);
+        //update hit
+        articleService.updateHit(articleId);
         Article article = articleService.findArticleById(articleId);
         setAttr("article",article).render("detail.html");
     }

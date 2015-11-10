@@ -28,7 +28,7 @@ index.loadHot = function(hot){
     console.debug(hot_list);
     //for each
     $(hot_list).each(function(){
-        var li = '<li><a href="/admin/article/detail/'+this.article_id+'">'+this.title+'</a></li>';
+        var li = '<li><a href="/admin/article/detail/'+this.id+'">'+this.title+'</a></li>';
         hot_list_ul.append(li);
     });
 }
@@ -40,7 +40,7 @@ index.loadNotReply = function(not_reply){
     var not_reply_list_ul = $("#not_reply_list");
     not_reply_list_ul.empty();
     $(not_reply.list).each(function(){
-        not_reply_list_ul.append('<li><a href="/admin/article/detail/'+this.article_id+'">'+this.title+'</a></li>');
+        not_reply_list_ul.append('<li><a href="/admin/article/detail/'+this.id+'">'+this.title+'</a></li>');
     });
 }
 

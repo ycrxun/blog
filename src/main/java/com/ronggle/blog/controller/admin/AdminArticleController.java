@@ -43,8 +43,10 @@ public class AdminArticleController extends BaseController {
      */
     public void save() {
         Article article = getModel(Article.class);
+        article.set("content",getPara("md_editor-markdown-doc"));
+        article.set("account_id",getRequest().getSession().getAttribute(Dict.ADMIN_SESSION));
         articleService.save(article);
-        index();
+        redirect("/admin/article");
     }
 
     /**
@@ -70,15 +72,24 @@ public class AdminArticleController extends BaseController {
     }
 
     /**
+     * delete article by id
+     */
+    public void delete(){
+        String articleId = getPara(0);
+        articleService.delete(articleId);
+        redirect("/admin/article");
+    }
+
+    /**
      * load article list
      */
     public void list() {
         pageNow = getParaToInt(0);
-        pageSize = getParaToInt(1);
+        //pageSize = getParaToInt(1);
         Record record = new Record()
                 .set("code", 100)
                 .set("message", "request success")
-                .set("data", articleService.findArticle(pageNow, pageSize));
+                .set("data", articleService.findArticle(pageNow, Dict.PageSize));
         renderJsonForIE(record);
     }
 }

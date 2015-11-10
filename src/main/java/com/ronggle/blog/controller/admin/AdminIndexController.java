@@ -37,8 +37,8 @@ public class AdminIndexController extends BaseController {
         Account account = accountService.token(getModel(Account.class));
         if (null != account) {
             //login success
-            setSessionAttr(Dict.ADMIN_SESSION, account.get("password"));
-            index();
+            setSessionAttr(Dict.ADMIN_SESSION, account.get("id"));
+            redirect("/admin");
         } else {
             setAttr("msg", "用户名或密码错误");
             login();

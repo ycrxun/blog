@@ -48,20 +48,18 @@
     <div class="container">
         <div class="row">
             <div class="col s12 m8">
-                <ul class="collection with-header z-depth-1">
+                <ul id="article_list" class="collection with-header z-depth-1">
                     <div class="collapsible-header indigo-text text-darken-4"> 文章列表&nbsp;|&nbsp;List</div>
+                    <%
+                        for(var article in page.list){
+                    %>
                     <li class="collection-item">
-                        <a href="/article/detail/1.html" class=" waves-effect waves-light">Title</a>
-                        <p>Ba la ba la......</p>
+                        <a href="/article/detail/${article.id!}.html" class=" waves-effect waves-light">${article.title!}</a>
+                        <p>${article.intro!}</p>
                     </li>
-                    <li class="collection-item">
-                        <a href="/article/detail/2.html" class=" waves-effect waves-light">Title</a>
-                        <p>Ba la ba la......</p>
-                    </li>
-                    <li class="collection-item">
-                        <a href="#!" class="waves-effect waves-light">Title</a>
-                        <p>Ba la ba la......</p>
-                    </li>
+                    <%
+                        }
+                    %>
                 </ul>
                 <ul class="pagination">
                     <li class="disable"><a href="#"><i class="mdi-icons-chevron_left"></i></a></li>
@@ -130,5 +128,20 @@
 <!--javascript-->
 <script src="/assets/js/jq/jquery-1.11.3.js"></script>
 <script src="/assets/materialize/js/materialize.min.js"></script>
+
+<script>
+    $(document).ready(function(){
+        //init_article_list();
+    });
+
+    function init_article_list(){
+        var article_list = $("#article_list");
+        article_list.empty();
+        var div = '<div class="collapsible-header indigo-text text-darken-4"> 文章列表&nbsp;|&nbsp;List</div>';
+        article_list.append(div);
+        $()
+
+    }
+</script>
 </body>
 </html>

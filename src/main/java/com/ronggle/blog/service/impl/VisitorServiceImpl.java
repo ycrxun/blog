@@ -29,6 +29,6 @@ public class VisitorServiceImpl implements VisitorService {
 
     @Override
     public void save(Visitor visitor) {
-        visitor.set("visitor_id", UuidUtil.getUuid32()).set("visitor_time", DateUtil.getUnixTimestamp()).save();
+        visitor.set("id", UuidUtil.getUuid32()).set("visitor_time", DateUtil.getUnixTimestamp()).save();
     }
 }

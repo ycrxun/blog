@@ -52,9 +52,18 @@
             <div class="col s12 m8">
                 <article class="card-panel">
                     <div class="card-title indigo-text">
-                        Title
+                        ${article.title!}
+                        <span>
+                            <small id="create_time" class="hiddendiv">${article.create_time}</small>
+                            <small>&nbsp;浏览量：${article.hit!}</small>
+                        </span>
                     </div>
-                    <p>Ba la ba la ...</p>
+                    <div id="article_content" class="hiddendiv">
+                        <textarea id="article_content_area">${article.content!}</textarea>
+                    </div>
+                    <div class="card-action">
+                        评论
+                    </div>
                 </article>
             </div>
             <!-- right -->
@@ -115,5 +124,23 @@
 <!--javascript-->
 <script src="/assets/js/jq/jquery-1.11.3.js"></script>
 <script src="/assets/materialize/js/materialize.min.js"></script>
+<script src="/assets/js/date.ext.js"></script>
+<script src="/assets/marked/marked.min.js"></script>
+
+<script>
+    $(document).ready(function(){
+        init_time();
+        init_article_content();
+    });
+
+    function init_time(){
+        var fmt = 'yyyy-MM-dd hh:mm:ss';
+        $("#create_time").html("发布于：" + new Date($("#create_time").val()).format(fmt)).removeClass("hiddendiv");
+    }
+
+    function init_article_content(){
+        $("#article_content").html(marked($("#article_content_area").val())).removeClass("hiddendiv");
+    }
+</script>
 </body>
 </html>

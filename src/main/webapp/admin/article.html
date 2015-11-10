@@ -51,7 +51,7 @@
     <div class="admin-sidebar am-offcanvas" id="admin-offcanvas">
         <div class="am-offcanvas-bar admin-offcanvas-bar">
             <ul class="am-list admin-sidebar-list">
-                <li><a href="index.html"><span class="am-icon-home"></span> 首页</a></li>
+                <li><a href="/admin"><span class="am-icon-home"></span> 首页</a></li>
                 <li class="admin-parent">
                     <a class="am-cf" data-am-collapse="{target: '#collapse-system-nav'}"><span
                             class="am-icon-cogs"></span>
@@ -66,7 +66,7 @@
                             class="am-icon-file"></span>
                         文章管理 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
                     <ul class="am-list am-collapse admin-sidebar-sub" id="collapse-article-nav">
-                        <li><a href="#"><i class="am-icon-file-text"> 文章列表</i></a></li>
+                        <li><a href="/admin/article"><i class="am-icon-file-text"> 文章列表</i></a></li>
                     </ul>
                 </li>
             </ul>
@@ -104,8 +104,9 @@
             <div class="am-u-sm-12 am-u-md-6">
                 <div class="am-btn-toolbar">
                     <div class="am-btn-group am-btn-group-xs">
-                        <button type="button" class="am-btn am-btn-default"><span class="am-icon-plus"></span> 新增
-                        </button>
+                        <a href="/admin/article/add" type="button" class="am-btn am-btn-default"><span
+                                class="am-icon-plus"></span> 新增
+                        </a>
                         <!-- <button type="button" class="am-btn am-btn-default"><span class="am-icon-save"></span> 保存
                          </button>
                          <button type="button" class="am-btn am-btn-default"><span class="am-icon-archive"></span> 审核
@@ -142,44 +143,43 @@
 
         <div class="am-g">
             <div class="am-u-sm-12">
-                <form class="am-form">
-                    <table class="am-table am-table-striped am-table-hover table-main">
-                        <thead>
-                        <tr>
-                            <th class="table-check"><input type="checkbox"/></th>
-                            <th class="table-id">Id</th>
-                            <th class="table-title">标题</th>
-                            <th class="table-type">类别</th>
-                            <th class="table-author am-hide-sm-only">发布日期</th>
-                            <th class="table-date am-hide-sm-only">修改日期</th>
-                            <th class="table-set">操作</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td><input type="checkbox"/></td>
-                            <td>1</td>
-                            <td><a href="#">Business management</a></td>
-                            <td>default</td>
-                            <td class="am-hide-sm-only">测试1号</td>
-                            <td class="am-hide-sm-only">2014年9月4日 7:28:47</td>
-                            <td>
-                                <div class="am-btn-toolbar">
-                                    <div class="am-btn-group am-btn-group-xs">
-                                        <button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span
-                                                class="am-icon-pencil-square-o"></span> 编辑
-                                        </button>
-                                        <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
-                                            <span class="am-icon-trash-o"></span> 删除
-                                        </button>
-                                    </div>
+                <table id="article_table" class="am-table am-table-striped am-table-hover table-main">
+                    <thead>
+                    <tr>
+                        <th class="table-id">Id</th>
+                        <th class="table-title">标题</th>
+                        <th class="table-type">类别</th>
+                        <th class="table-author am-hide-sm-only">发布日期</th>
+                        <th class="table-date am-hide-sm-only">修改日期</th>
+                        <th class="table-set">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td><a href="#">Business management</a></td>
+                        <td>default</td>
+                        <td class="am-hide-sm-only">测试1号</td>
+                        <td class="am-hide-sm-only">2014年9月4日 7:28:47</td>
+                        <td>
+                            <div class="am-btn-toolbar">
+                                <div class="am-btn-group am-btn-group-xs">
+                                    <button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span
+                                            class="am-icon-pencil-square-o"></span> 编辑
+                                    </button>
+                                    <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
+                                        <span class="am-icon-trash-o"></span> 删除
+                                    </button>
                                 </div>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </form>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div id="page"></div>
+                <div id="pageView"></div>
             </div>
+
             <!-- end content -->
             <a href="#" class="am-show-sm-only admin-menu" data-am-offcanvas="{target: '#admin-offcanvas'}">
                 <span class="am-icon-btn am-icon-th-list"></span>
@@ -194,6 +194,8 @@
         <p class="am-padding-left">&copy;Soi</p>
     </div>
 </footer>
+
+<!-- start script -->
 <!--[if lt IE 9]>
 <script src="/assets/js/jq/jquery-1.11.3.js"></script>
 <script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
@@ -204,5 +206,13 @@
 <script src="/assets/js/jq/jquery-2.1.4.js"></script>
 <!--<![endif]-->
 <script src="/assets/amazeui/js/amazeui.min.js"></script>
+
+<!-- layer page -->
+<script src="/assets/laypage/laypage.js"></script>
+
+<script src="/assets/js/date.ext.js"></script>
+
+<!-- article.js -->
+<script src="/assets/js/article.js"></script>
 </body>
 </html>

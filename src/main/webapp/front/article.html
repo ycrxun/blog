@@ -1,53 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="x-ua-compatible" content="IE=edge;Chrome=1">
-    <meta name="renderer" content="webkit"/>
-    <link rel="shortcut icon" type="image/x-icon" href="/assets/images/favicon.ico">
-    <title>Soi个人博客-Soi Blog</title>
+<%
+var head = {
+include("/front/layout/head.html"){}
+};
+var body = {
 
-    <!-- css link -->
-    <link rel="stylesheet" href="../assets/materialize/css/materialize.min.css">
-    <link rel="stylesheet" href="../assets/css/main.css">
-
-</head>
-<body>
-<div class="hiddendiv"></div>
-<!-- header -->
-<header class="header indigo z-depth-1">
-    <a id="top"></a>
-    <img src="/assets/images/xn.png" class="circle responsive-img" alt="">
-
-    <h1>Soi</h1>
-
-    <p>Source of infection</p>
-
-    <div class="container">
-        <nav class="indigo navbar-fixed" style="box-shadow: none;">
-            <div class="nav-wrapper">
-                <a href="#" data-activates="mobile-mode" class="button-collapse">
-                    <i class="mdi-navigation-menu"></i>
-                </a>
-                <ul class="hide-on-med-and-down">
-                    <li><a href="/" class="waves-effect waves-light">首页&nbsp;|&nbsp;Home</a></li>
-                    <li><a href="/article/1-10.html" class="waves-effect waves-light">文章&nbsp;|&nbsp;Article</a></li>
-                    <li><a href="#" class="waves-effect waves-light">关于&nbsp;|&nbsp;About Me</a></li>
-                </ul>
-                <ul class="side-nav mobile-mode" id="mobile-mode">
-                    <li><a href="#" class="waves-effect waves-light">首页&nbsp;|&nbsp;Home</a></li>
-                    <li><a href="#" class="waves-effect waves-light">文章&nbsp;|&nbsp;Article</a></li>
-                    <li><a href="#" class="waves-effect waves-light">关于我&nbsp;|&nbsp;About Me</a></li>
-                </ul>
-            </div>
-        </nav>
-    </div>
-</header>
+include("/front/layout/header.html"){}
+%>
 
 <div class="section fade-in" id="index-banner" style="display: block; opacity: 1;">
     <div class="container">
         <div class="row">
-            <div class="col s12 m8">
+            <div class="col s12 m12 l8">
                 <ul id="article_list" class="collection with-header z-depth-1">
                     <div class="collapsible-header indigo-text text-darken-4"> 文章列表&nbsp;|&nbsp;List</div>
                     <%
@@ -62,86 +25,52 @@
                     %>
                 </ul>
                 <ul class="pagination">
-                    <li class="disable"><a href="#"><i class="mdi-icons-chevron_left"></i></a></li>
-                    <li class="active"><a href="">1</a></li>
-                    <li class="waves-effect waves-light"><a href="/article/2-10.html">2</a></li>
-                    <li class="waves-effect waves-light"><a href="#">3</a></li>
-                    <li class="waves-effect waves-light"><a href="#">4</a></li>
-                    <li class="waves-effect waves-light"><a href="#">5</a></li>
-                    <li class="waves-effect waves-light"><a href="#"><i class="mdi-icons-chevron_right"></i></a></li>
+                    <%
+                    for(var i = 1; i <= page.totalPage; i++){
+                        if(i == page.pageNumber){
+                    %>
+                    <li class="active"><a href="/article/${i}-10.html">${i}</a></li>
+                    <%
+                        } else {
+                    %>
+                    <li class="waves-effect waves-light"><a href="/article/${i}-10.html">${i}</a></li>
+                    <%
+                        }
+                    }
+                    %>
                 </ul>
             </div>
-            <div class="col s12 m4">
-                <div class="collection with-header z-depth-1">
-                    <div class="collapsible-header indigo-text text-darken-4"> 最新文章&nbsp;|&nbsp;Latest</div>
-                    <a href="/article/detail/1.html" class="collection-item waves-effect waves-light">Alvin</a>
-                    <a href="#!" class="collection-item waves-effect waves-light">Alvin</a>
-                    <a href="#!" class="collection-item waves-effect waves-light">Alvin</a>
-                    <a href="#!" class="collection-item waves-effect waves-light">Alvin</a>
-                    <a href="#!" class="collection-item waves-effect waves-light">Alvin</a>
-                </div>
-
-                <div class="collection with-header z-depth-1">
-                    <div class="collapsible-header indigo-text text-darken-4"> 最热文章&nbsp;|&nbsp;Hot</div>
-                    <a href="/article/detail/1.html" class="collection-item waves-effect waves-light">Alvin</a>
-                    <a href="#!" class="collection-item waves-effect waves-light">Alvin</a>
-                    <a href="#!" class="collection-item waves-effect waves-light">Alvin</a>
-                    <a href="#!" class="collection-item waves-effect waves-light">Alvin</a>
-                    <a href="#!" class="collection-item waves-effect waves-light">Alvin</a>
-                </div>
+            <div class="col s12 m12 l4">
+                <%
+                    include("/front/layout/right.html"){}
+                %>
             </div>
         </div>
     </div>
+    <a href="#top" class="btn-floating btn-large waves-effect waves-light blue right">Top</a>
 </div>
 
 <!--footer-->
-<footer class="page-footer indigo z-depth-1">
-    <div class="container">
-        <div class="row center">
-            <div class="">
-                <h1>友情链接</h1>
-                <a class="chip" href="http://www.oschina.net">
-                    <img src="http://www.oschina.net/img/favicon.ico" alt="开源中国">
-                    开源中国
-                </a>
-                <a class="chip" href="http://www.jfinal.com/">
-                    <img src="http://www.jfinal.com/favicon.ico" alt="JFinal">
-                    JFinal
-                </a>
-                <a class="chip" href="http://www.materializecss.com">
-                    <img src="http://www.materializecss.com/images/favicon/favicon-32x32.png" alt="Materialize">
-                    Materialize
-                </a>
-                <a class="chip" href="http://jfbbs.tomoya.cn">
-                    <img src="http://jfbbs.tomoya.cn/favicon.ico" alt="JFinal社区">
-                    JFinal社区
-                </a>
-            </div>
-        </div>
-    </div>
-    <div class="footer-copyright">
-        <div class="center">
-            &copy;Soi 2015 All rights reserved.
-        </div>
-    </div>
-</footer>
+<%
+include("/front/layout/footer.html"){}
+%>
 <!--javascript-->
 <script src="/assets/js/jq/jquery-1.11.3.js"></script>
 <script src="/assets/materialize/js/materialize.min.js"></script>
-
+<script src="/assets/js/client.js"></script>
 <script>
-    $(document).ready(function(){
-        //init_article_list();
+    $(document).ready(function () {
+        console.debug("document load finished...");
+
+        console.log("init mobile mode nav");
+        $(".button-collapse").sideNav();
+
+        layout_right.load_last_article_list();
+        layout_right.load_hot_article_list();
+        
     });
-
-    function init_article_list(){
-        var article_list = $("#article_list");
-        article_list.empty();
-        var div = '<div class="collapsible-header indigo-text text-darken-4"> 文章列表&nbsp;|&nbsp;List</div>';
-        article_list.append(div);
-        $()
-
-    }
 </script>
-</body>
-</html>
+<%
+};
+layout("/front/layout/_layout.html",{head:head,body:body}){}
+%>

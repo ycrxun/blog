@@ -7,16 +7,17 @@ import org.jsoup.safety.Whitelist;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
  * Created by soi on 15-11-2.
  */
-public class XssHanlder extends Handler{
+public class XssHandler extends Handler{
 
     private String exclude;
 
-    public XssHanlder(String exclude) {
+    public XssHandler(String exclude) {
         this.exclude = exclude;
     }
 
@@ -52,6 +53,7 @@ public class XssHanlder extends Handler{
         @Override
         public Map<String, String[]> getParameterMap() {
             Map<String, String[]> paraMap = super.getParameterMap();
+            Map<String,String[]> newParaMap = new HashMap<String, String[]>();
             // 对于paraMap为空的直接return
             if (null == paraMap || paraMap.isEmpty()) {
                 return paraMap;
@@ -66,9 +68,9 @@ public class XssHanlder extends Handler{
                 for (int i = 0; i < values.length; i++) {
                     newValues[i] = HtmlFilter.getBasicHtmlAndImage(values[i]);
                 }
-                paraMap.put(key, newValues);
+                newParaMap.put(key, newValues);
             }
-            return paraMap;
+            return newParaMap;
         }
 
         private static class HtmlFilter {

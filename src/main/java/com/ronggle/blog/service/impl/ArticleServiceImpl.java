@@ -19,12 +19,12 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public Page<Article> findHotArticle(Integer pageSize) {
-        return Article.dao.paginate(1, pageSize, "select ar.*", "from article as ar where 1 = 1 and status = 1 and reply > 0 order by reply desc");
+        return Article.dao.paginate(1, pageSize, "select a.* ", "from article as a where 1 = 1 and status = 1 order by reply desc, hit desc");
     }
 
     @Override
     public Page<Article> findNotReplyArticle(Integer pageSize) {
-        return Article.dao.paginate(1, pageSize, "select ar.*", "from article as ar where 1 = 1 and status = 1 and reply = 0 order by create_time desc");
+        return Article.dao.paginate(1, pageSize, "select a.*", "from article as a where 1 = 1 and status = 1 and reply = 0 order by create_time desc");
     }
 
     @Override
@@ -65,5 +65,10 @@ public class ArticleServiceImpl implements ArticleService {
         Integer hit = article.getInt("hit");
         article.set("hit", hit + 1);
         return article.update();
+    }
+
+    @Override
+    public Page<Article> findLastArticle(Integer lastPageSize) {
+        return Article.dao.paginate(1, lastPageSize, "select a.*", "from article as a where 1 = 1 and status = 1 order by create_time desc");
     }
 }

@@ -3,6 +3,8 @@ package com.ronggle.blog.service;
 import com.jfinal.plugin.activerecord.Page;
 import com.ronggle.blog.model.Article;
 
+import java.util.List;
+
 /**
  * Created by soi on 15-11-6.
  */
@@ -56,4 +58,11 @@ public interface ArticleService {
      * @return boolean
      */
     boolean updateHit(String articleId);
+
+    /**
+     * find last publish article
+     * @param lastPageSize page size
+     * @return page
+     */
+    Page<Article> findLastArticle(Integer lastPageSize);
 }

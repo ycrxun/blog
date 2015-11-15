@@ -24,6 +24,7 @@
         <mysql.driver.version>5.1.37</mysql.driver.version>
         <servlet.version>3.1.0</servlet.version>
         <jsoup.version>1.8.3</jsoup.version>
+        <ehcache.version>2.6.11</ehcache.version>
     </properties>
 
     <build>
@@ -178,6 +179,11 @@
             <groupId>org.jsoup</groupId>
             <artifactId>jsoup</artifactId>
             <version>${jsoup.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache-core</artifactId>
+            <version>${ehcache.version}</version>
         </dependency>
     </dependencies>
 </project>

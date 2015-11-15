@@ -10,11 +10,12 @@ import com.jfinal.kit.PropKit;
 import com.jfinal.log.Logger;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.druid.DruidPlugin;
+import com.jfinal.plugin.ehcache.EhCachePlugin;
 import com.ronggle.blog.controller.admin.AdminArticleController;
 import com.ronggle.blog.controller.admin.AdminIndexController;
 import com.ronggle.blog.controller.client.ClientController;
 import com.ronggle.blog.handler.Htmlhandler;
-import com.ronggle.blog.handler.XssHanlder;
+import com.ronggle.blog.handler.XssHandler;
 import com.ronggle.blog.model.*;
 import org.beetl.ext.jfinal.BeetlRenderFactory;
 
@@ -30,6 +31,7 @@ public class App extends JFinalConfig {
     @Override
     public void configConstant(Constants constants) {
         //load config file
+        logger.info("load config file in class path...");
         prop = PropKit.use("global.properties");
         constants.setDevMode(prop.getBoolean("app.dev.mode", false));
         constants.setMainRenderFactory(new BeetlRenderFactory());
@@ -81,6 +83,9 @@ public class App extends JFinalConfig {
         local_arp.addMapping("visitor", Visitor.class);
 
         plugins.add(local_arp);
+
+        //config ehcache plugin
+        plugins.add(new EhCachePlugin());
     }
 
     @Override
@@ -95,7 +100,7 @@ public class App extends JFinalConfig {
         //处理.html后缀的请求
         handlers.add(new Htmlhandler());
         //排除后台管理请求的Xss过滤
-        handlers.add(new XssHanlder("/admin"));
+        handlers.add(new XssHandler("/admin"));
     }
 
     public static void main(String[] args) {

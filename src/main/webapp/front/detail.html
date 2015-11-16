@@ -28,6 +28,7 @@ include("/front/layout/header.html"){}
                     </ul>
 
                     <!-- reply list -->
+                    <input id="article_id_hidden" type="hidden" name="article_id" value="${article.id}"/>
                     <ul id="reply_list" class="collection">
                         <li class="collection-item">
                             <div class="row valign-wrapper">
@@ -36,18 +37,21 @@ include("/front/layout/header.html"){}
                                 </div>
                                 <div class="col s10">
                                     <span class="black-text">
-                                        <small>ycrxun 回复于 <script>document.write(new Date().format('yyyy-MM-dd hh:mm:ss'));</script></small><br/>
+                                        <small>ycrxun 回复于
+                                            <script>document.write(new Date().format('yyyy-MM-dd hh:mm:ss'));</script>
+                                        </small><br/>
                                         This is a square image. Add the "circle" class to it to make it appear circular.
                                     </span>
                                 </div>
                             </div>
                         </li>
                     </ul>
+                    <div id="reply_page_view"></div>
 
                     <!-- reply form -->
                     <ul class="collection">
                         <li class="collection-item">
-                            <form id="reply_form" action="/article/reply/${article.id}" method="post">
+                            <form id="reply_form">
                                 <input type="hidden" name="reply.article_id" value="${article.id}">
 
                                 <div class="input-field col s12 center">
@@ -62,12 +66,13 @@ include("/front/layout/header.html"){}
                                 </div>
                                 <div class="input-field col s12 center">
                                     <i class="mdi-communication-message prefix"></i>
-                                    <textarea id="reply_content" length="200" name="reply.content" class="materialize-textarea"></textarea>
+                                    <textarea id="reply_content" length="200" name="reply.content"
+                                              class="materialize-textarea"></textarea>
                                     <label for="reply_content">内容</label>
                                 </div>
                                 <div class="input-field col s12 left">
                                     <a class="btn btn-primary" onclick="detail.reply();">回复</a>&nbsp;
-                                   <!-- <input class="btn btn-primary" type="button" onclick="detail.preview();" value="预览"/>-->
+                                    <!-- <input class="btn btn-primary" type="button" onclick="detail.preview();" value="预览"/>-->
                                 </div>
                                 <!--<div id="reply_content">
                                     <textarea class="materialize-textarea" length="120"></textarea>
@@ -100,7 +105,7 @@ include("/front/layout/footer.html"){}
 <!--javascript-->
 <script src="/assets/js/jq/jquery-1.11.3.js"></script>
 <script src="/assets/materialize/js/materialize.min.js"></script>
-
+<script src="/assets/laypage/laypage.js"></script>
 <script src="/markdown/lib/marked.min.js"></script>
 <script src="/assets/js/client.js"></script>
 
@@ -116,6 +121,9 @@ include("/front/layout/footer.html"){}
 
         detail.init_time();
         detail.init_article_content();
+        detail.init_reply_list();
+
+        link.init_link_list();
 
         console.log("init text area character count...");
         $("input#reply_content").characterCounter();

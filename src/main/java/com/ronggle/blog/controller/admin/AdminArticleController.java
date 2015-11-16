@@ -19,14 +19,14 @@ public class AdminArticleController extends BaseController {
     private ArticleService articleService = Duang.duang(ArticleServiceImpl.class);
 
     public void index() {
-        render("article.html");
+        render("article/article.html");
     }
 
     /**
      * go to add article page
      */
     public void add() {
-        render("detail.html");
+        render("article/detail.html");
     }
 
     /**
@@ -35,7 +35,7 @@ public class AdminArticleController extends BaseController {
     public void edit() {
         //do find article
         String articleId = getPara(0);
-        setAttr("article", articleService.findArticleById(articleId)).render("detail.html");
+        setAttr("article", articleService.findArticleById(articleId)).render("article/detail.html");
     }
 
     /**
@@ -68,7 +68,7 @@ public class AdminArticleController extends BaseController {
      */
     public void detail(){
         String articleId = getPara(0);
-        setAttr("article",articleService.findArticleById(articleId)).render("detail.html");
+        setAttr("article",articleService.findArticleById(articleId)).render("article/detail.html");
     }
 
     /**

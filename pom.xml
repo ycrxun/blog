@@ -67,6 +67,8 @@
                         <exclude>assets/**/**.min.css</exclude>
                         <exclude>assets/materialize/js/**/*.js</exclude>
                         <exclude>assets/materialize/js/**/*.css</exclude>
+                        <exclude>assets/layer/**/*.css</exclude>
+                        <exclude>assets/layer/**/*.js</exclude>
                     </excludes>
                 </configuration>
             </plugin>

@@ -20,11 +20,11 @@ public class ReplyServiceImpl implements ReplyService {
 
     @Override
     public boolean save(Reply reply) {
-        if (StrKit.notBlank(reply.getStr("reply_id"))) {
+        if (StrKit.notBlank(reply.getStr("id"))) {
             //do update
             return reply.update();
         } else {
-            reply.set("reply_id", UuidUtil.getUuid32()).set("reply_time", DateUtil.getUnixTimestamp()).set("status", Status.DISABLE.status);
+            reply.set("id", UuidUtil.getUuid32()).set("reply_time", DateUtil.getUnixTimestamp()).set("status", Status.ENABLE.status);
             return reply.save();
         }
     }

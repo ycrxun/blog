@@ -6,17 +6,15 @@ import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.plugin.ehcache.CacheKit;
 import com.ronggle.blog.controller.BaseController;
-import com.ronggle.blog.model.Article;
-import com.ronggle.blog.model.Dict;
-import com.ronggle.blog.model.Reply;
-import com.ronggle.blog.model.Visitor;
+import com.ronggle.blog.model.*;
 import com.ronggle.blog.service.ArticleService;
+import com.ronggle.blog.service.LinkService;
 import com.ronggle.blog.service.VisitorService;
 import com.ronggle.blog.service.ReplyService;
 import com.ronggle.blog.service.impl.ArticleServiceImpl;
+import com.ronggle.blog.service.impl.LinkServiceImpl;
 import com.ronggle.blog.service.impl.VisitorServiceImpl;
 import com.ronggle.blog.service.impl.ReplyServiceImpl;
-import com.ronggle.blog.utils.UuidUtil;
 
 import java.util.List;
 
@@ -28,6 +26,7 @@ public class ClientController extends BaseController {
     private ArticleService articleService = Duang.duang(ArticleServiceImpl.class);
     private VisitorService visitorService = Duang.duang(VisitorServiceImpl.class);
     private ReplyService replyService = Duang.duang(ReplyServiceImpl.class);
+    private LinkService linkService = Duang.duang(LinkServiceImpl.class);
 
     /**
      * index page
@@ -104,9 +103,14 @@ public class ClientController extends BaseController {
         Reply reply = getModel(Reply.class);
         //do sth.
         replyService.save(reply);
+        //update article reply
+        articleService.updateReply(reply.getStr("article_id"));
+        //clear reply cache
+        CacheKit.removeAll(Dict.ReplyCache);
+        //update hot cache
+        CacheKit.put(Dict.ArticleCache, Dict.HotArticle, articleService.findLastArticle(Dict.LastPageSize).getList());
         //render json
         renderJsonForIE(new Record().set("code", 100).set("message", "request successful...").set("data", reply));
-        //redirect("/article/detail/" + reply.getStr("article_id"));
     }
 
     /**
@@ -121,9 +125,20 @@ public class ClientController extends BaseController {
         }
         pageSize = getParaToInt("pageSize");
         if (null == pageSize || pageSize < 1) {
-            pageSize = Dict.PageSize;
+            pageSize = Dict.PageSize - 5;
         }
-        renderJsonForIE(new Record().set("code", 100).set("message", "request successful").set("data", replyService.findReplyByArticleId(articleId, pageNow, pageSize)));
+        Page<Reply> replyPage = CacheKit.get(Dict.ReplyCache, "reply_" + articleId + "_" + pageNow);
+        if (null == replyPage) {
+            replyPage = replyService.findReplyByArticleId(articleId, pageNow, pageSize);
+            CacheKit.put(Dict.ReplyCache, "reply_" + articleId + "_" + pageNow, replyPage);
+        }
+        renderJsonForIE(new Record().set("code", 100).set("message", "request successful").set("data", replyPage));
+    }
+
+    @ActionKey("/link")
+    public void link(){
+        List<Link> links = linkService.findLinkByCache();
+        success(links);
     }
 
     /**

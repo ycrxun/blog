@@ -2,6 +2,7 @@ package com.ronggle.blog.service;
 
 import com.jfinal.plugin.activerecord.Page;
 import com.ronggle.blog.model.Article;
+import com.ronggle.blog.model.Reply;
 
 import java.util.List;
 
@@ -65,4 +66,11 @@ public interface ArticleService {
      * @return page
      */
     Page<Article> findLastArticle(Integer lastPageSize);
+
+    /**
+     * update article reply num by article id
+     * @param articleId article id
+     * @return boolean
+     */
+    boolean updateReply(String articleId);
 }

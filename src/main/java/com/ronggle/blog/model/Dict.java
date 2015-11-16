@@ -22,5 +22,6 @@ public class Dict {
     public static final String ArticleCache = "ArticleCache";
     public static final String HotArticle = "HotArticle";
     public static final String LastArticle = "LastArticle";
-
+    public static final String ReplyCache = "ReplyCache";
+    public static final String LinkCache = "LinkCache";
 }

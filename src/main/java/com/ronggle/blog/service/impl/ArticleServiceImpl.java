@@ -3,6 +3,8 @@ package com.ronggle.blog.service.impl;
 import com.jfinal.kit.StrKit;
 import com.jfinal.plugin.activerecord.Page;
 import com.ronggle.blog.model.Article;
+import com.ronggle.blog.model.Dict;
+import com.ronggle.blog.model.Reply;
 import com.ronggle.blog.service.ArticleService;
 import com.ronggle.blog.utils.DateUtil;
 import com.ronggle.blog.utils.UuidUtil;
@@ -71,4 +73,12 @@ public class ArticleServiceImpl implements ArticleService {
     public Page<Article> findLastArticle(Integer lastPageSize) {
         return Article.dao.paginate(1, lastPageSize, "select a.*", "from article as a where 1 = 1 and status = 1 order by create_time desc");
     }
+
+    @Override
+    public boolean updateReply(String articleId) {
+        Article article = Article.dao.findById(articleId);
+        Integer reply_count = article.getInt("reply");
+        return article.set("reply",reply_count + 1).update();
+    }
+
 }

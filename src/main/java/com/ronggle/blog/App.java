@@ -13,6 +13,7 @@ import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.plugin.ehcache.EhCachePlugin;
 import com.ronggle.blog.controller.admin.AdminArticleController;
 import com.ronggle.blog.controller.admin.AdminIndexController;
+import com.ronggle.blog.controller.admin.AdminLinkController;
 import com.ronggle.blog.controller.client.ClientController;
 import com.ronggle.blog.handler.Htmlhandler;
 import com.ronggle.blog.handler.XssHandler;
@@ -46,6 +47,7 @@ public class App extends JFinalConfig {
     private void adminRoutes(Routes routes) {
         routes.add("/admin", AdminIndexController.class, Dict.Admin);
         routes.add("/admin/article", AdminArticleController.class, Dict.Admin);
+        routes.add("/admin/link", AdminLinkController.class, Dict.Admin);
     }
 
     private void clientRoutes(Routes routes) {

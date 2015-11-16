@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/images/favicon.ico">
+    <title>友链列表</title>
+
+    <!-- 引入Amaze css -->
+    <link rel="stylesheet" href="/assets/amazeui/css/amazeui.min.css"/>
+
+    <link rel="stylesheet" href="/assets/layer/skin/layer.css"/>
+    <link rel="stylesheet" href="/assets/layer/skin/layer.ext.css"/>
+
+    <link rel="stylesheet" href="/assets/css/admin.css"/>
+</head>
+<body>
+<!-- header -->
+<%
+    include("/admin/header.html"){}
+%>
+<div class="am-cf admin-main">
+    <!-- left sidebar nav -->
+    <%
+        include("/admin/sidebar.html"){}
+    %>
+    <!-- end left sidebar -->
+
+    <!-- start content -->
+    <div class="admin-content">
+
+        <div class="am-cf am-padding">
+            <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">首页</strong> /友链管理/
+                <small>友链列表</small>
+            </div>
+        </div>
+
+        <div class="am-g">
+            <div class="am-u-sm-12 am-u-md-6">
+                <div class="am-btn-toolbar">
+                    <div class="am-btn-group am-btn-group-xs">
+                        <a href="javascript:;" class="am-btn am-btn-default" onclick="link.plus_link();"><span
+                                class="am-icon-plus"></span> 新增
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="am-u-sm-12 am-u-md-3">
+                <div class="am-form-group">
+                    <select data-am-selected="{btnSize: 'sm'}">
+                        <option value="0,1">所有类别</option>
+                        <option value="0">不显示</option>
+                        <option value="1">显示</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="am-u-sm-12 am-u-md-3">
+                <div class="am-input-group am-input-group-sm">
+                    <input type="text" class="am-form-field">
+                        <span class="am-input-group-btn">
+                            <button class="am-btn am-btn-default" type="button">搜索</button>
+                        </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="am-g">
+            <div class="am-u-sm-12">
+                <table id="link_table" class="am-table am-table-striped am-table-hover table-main">
+                    <thead>
+                    <tr>
+                        <th class="table-id">Id</th>
+                        <th class="table-title">友链名称</th>
+                        <th class="table-type">链接地址</th>
+                        <th class="table-type">状态</th>
+                        <th class="table-date">发布日期</th>
+                        <th class="table-set">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td><a href="#">开源中国</a></td>
+                        <td>http://www.oschina.net</td>
+                        <td>显示</td>
+                        <td>2014年9月4日 7:28:47</td>
+                        <td>
+                            <div class="am-btn-toolbar">
+                                <div class="am-btn-group am-btn-group-xs">
+                                    <button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span
+                                            class="am-icon-pencil-square-o"></span> 编辑
+                                    </button>
+                                    <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
+                                        <span class="am-icon-trash-o"></span> 删除
+                                    </button>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div id="page"></div>
+                <div id="pageView"></div>
+            </div>
+
+            <!-- end content -->
+            <a href="#" class="am-show-sm-only admin-menu" data-am-offcanvas="{target: '#admin-offcanvas'}">
+                <span class="am-icon-btn am-icon-th-list"></span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- footer -->
+<%
+    include("/admin/footer.html"){}
+%>
+
+<!-- start script -->
+<!--[if lt IE 9]>
+<script src="/assets/js/jq/jquery-1.11.3.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="/assets/amazeui/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="/assets/js/jq/jquery-2.1.4.js"></script>
+<!--<![endif]-->
+<script src="/assets/amazeui/js/amazeui.min.js"></script>
+
+<!-- layer page -->
+<script src="/assets/laypage/laypage.js"></script>
+<!-- layer -->
+<script src="/assets/layer/layer.js"></script>
+<script src="/assets/layer/extend/layer.ext.js"></script>
+<!-- date ext -->
+<script src="/assets/js/date.ext.js"></script>
+<!-- link js -->
+<script src="/assets/js/link.js"></script>
+<script>
+    $(document).ready(function () {
+        console.log("document load finished...");
+        link.init_link_table();
+    });
+</script>
+</body>
+</html>

@@ -16,8 +16,16 @@ include("/front/layout/header.html"){}
                         <li>
                             <img src="/assets/images/25.jpg">
                             <div class="caption center-align">
-                                <h3>This is our big Tagline!</h3>
-                                <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+                                <h3>古韵</h3>
+                                <pre class="light grey-text text-lighten-3">
+                                    离歌唱尽终是别，<br/>
+                                    秋月夜，十里长街。<br/>
+                                    此去经年，问君何时歇？<br/>
+                                    低头欲语语还竭，<br/>
+                                    托鸿雁，每逢佳节。<br/>
+                                    瘦马西风，玉蟾依山斜。<br/>
+                                                --送别<br/>
+                                </pre>
                             </div>
                         </li>
                         <li>
@@ -59,6 +67,8 @@ include("/front/layout/footer.html"){}
 
         console.log("init mobile mode nav");
         $(".button-collapse").sideNav();
+
+        link.init_link_list();
 
         console.log("init slider");
         $(".slider").slider({

@@ -1,0 +1,118 @@
+<!-- html 5 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/images/favicon.ico">
+    <title>首页</title>
+
+    <!-- 引入Amaze css -->
+    <link rel="stylesheet" href="/assets/amazeui/css/amazeui.min.css"/>
+    <link rel="stylesheet" href="/assets/css/admin.css"/>
+
+    <link rel="stylesheet" href="/markdown/css/editormd.min.css"/>
+
+</head>
+<body>
+<!-- header -->
+<%
+    include("/admin/header.html"){}
+%>
+
+<div class="am-cf admin-main">
+    <!-- left sidebar nav -->
+    <%
+        include("/admin/sidebar.html"){}
+    %>
+    <!-- end left sidebar -->
+
+    <!-- start content -->
+    <div class="admin-content">
+
+        <div class="am-cf am-padding">
+            <div class="am-fl am-cf">
+                <strong class="am-text-primary am-text-lg">首页</strong> /
+                <a href="/admin/article"> 文章管理</a> /
+                <small>文章详情</small>
+            </div>
+        </div>
+
+
+        <form class="am-form" action="/admin/article/save" method="post">
+
+            <input type="hidden" class="am-input-sm" name="article.id" value="${article.id!}">
+
+            <!-- 文章标题 -->
+            <div class="am-g am-margin-top">
+                <div class="am-u-sm-4 am-u-md-2 am-text-right">
+                    文章标题
+                </div>
+                <div class="am-u-sm-8 am-u-md-4">
+                    <input type="text" class="am-input-sm" name="article.title" value="${article.title!}">
+                </div>
+                <div class="am-hide-sm-only am-u-md-6">*必填，不可重复</div>
+            </div>
+
+            <!--文章分类-->
+            <div class="am-g am-margin-top">
+                <div class="am-u-sm-4 am-u-md-2 am-text-right">
+                    文章分类
+                </div>
+                <div class="am-u-sm-8 am-u-md-4 am-u-end col-end">
+                    <input type="text" class="am-input-sm" name="article.article_type" value="${article.article_type!}">
+                </div>
+            </div>
+
+            <!--内容摘要-->
+            <div class="am-g am-margin-top">
+                <div class="am-u-sm-4 am-u-md-2 am-text-right">
+                    内容摘要
+                </div>
+                <div class="am-u-sm-8 am-u-md-4">
+                    <input type="text" class="am-input-sm" name="article.intro" value="${article.intro!}">
+                </div>
+                <div class="am-u-sm-12 am-u-md-6">不填写则自动截取内容前255字符</div>
+            </div>
+
+            <!--内容描述-->
+            <div class="am-g am-margin-top-sm">
+                <div class="am-u-sm-4 am-u-md-2 am-text-right">
+                    内容描述
+                </div>
+                <div class="am-u-sm-12 am-u-md-10" id="md_editor">
+                    <textarea>${article.content!}</textarea>
+                </div>
+            </div>
+
+            <button type="submit" class="am-btn am-btn-default am-radius">提交</button>
+        </form>
+        <!-- end content -->
+
+        <a href="#" class="am-show-sm-only admin-menu" data-am-offcanvas="{target: '#admin-offcanvas'}">
+            <span class="am-icon-btn am-icon-th-list"></span>
+        </a>
+    </div>
+</div>
+<!-- footer -->
+<%
+    include("/admin/footer.html"){}
+%>
+
+<!--[if lt IE 9]>
+<script src="/assets/js/jq/jquery-1.11.3.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="/assets/amazeui/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="/assets/js/jq/jquery-2.1.4.js"></script>
+<!--<![endif]-->
+<script src="/assets/amazeui/js/amazeui.min.js"></script>
+
+<script src="/markdown/editormd.min.js"></script>
+
+<script src="/assets/js/md.js"></script>
+</body>
+</html>

@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/images/favicon.ico">
+    <title>个人资料</title>
+    <!-- 引入Amaze css -->
+    <link rel="stylesheet" href="/assets/amazeui/css/amazeui.min.css"/>
+
+    <link rel="stylesheet" href="/assets/layer/skin/layer.css"/>
+    <link rel="stylesheet" href="/assets/layer/skin/layer.ext.css"/>
+
+    <link rel="stylesheet" href="/assets/css/admin.css"/>
+</head>
+
+<body>
+<!-- header -->
+<%
+include("/admin/header.html"){}
+%>
+<div class="am-cf admin-main">
+    <!-- left sidebar nav -->
+    <%
+    include("/admin/sidebar.html"){}
+    %>
+    <!-- end left sidebar -->
+
+    <!-- start content -->
+    <div class="admin-content">
+        <div class="am-cf am-padding">
+            <div class="am-fl am-cf">
+                <strong class="am-text-primary am-text-lg">个人资料</strong> /
+                <small>Personal info</small>
+            </div>
+        </div>
+
+        <div class="am-g">
+            <div class="am-u-sm-12 am-u-md-4 am-u-md-push-8">
+                <div class="am-panel am-panel-default">
+                    <div class="am-panel-bd">
+                        <div class="am-g">
+                            <div id="avatar_preview" class="am-u-md-4">
+                                <img class="am-img-circle am-img-thumbnail" src="${account.avatar!}" alt="个人头像"/>
+                            </div>
+                            <div class="am-u-md-8">
+                                <!--<p>必须是正方形图片，否则显示效果不佳</p>-->
+                                <!-- upload file form -->
+                                <form id="avatar_form" class="am-form" enctype="multipart/form-data">
+                                    <div class="am-form-group am-form-file">
+                                        <button id="avatar_form_file_btn" type="button"
+                                                class="am-btn am-btn-default am-btn-sm">
+                                            <!--<i class="am-icon-cloud-upload"></i>--> 修改头像
+                                        </button>
+                                        <input id="avatar_form_file" type="file" name="avatar" multiple>
+                                        <input class="am-hide" type="hidden" name="account.id" value="${account.id!}">
+                                    </div>
+                                </form>
+                                <!-- <a id="alter_avatar" class="am-btn am-btn-default">修改头像</a>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="am-panel am-panel-default">
+                    <div class="am-panel-bd">
+                        <div class="user-info">
+                            <p>等级信息</p>
+
+                            <div class="am-progress am-progress-sm">
+                                <div class="am-progress-bar" style="width: 60%"></div>
+                            </div>
+                            <div class="user-info-order">
+                                <p>当前等级：<strong>LV8</strong></p>
+
+                                <p>距离下一级别：<strong>160</strong></p>
+
+                                <p>活跃天数：<strong>587</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="am-panel am-panel-default">
+                    <div class="am-panel-bd">
+                        <div class="user-info">
+                            <p>积分信息</p>
+
+                            <div class="user-info-order">
+                                <p>积分：<strong>80</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- account info -->
+            <div class="am-u-sm-12 am-u-md-8 am-u-md-pull-4">
+                <!-- basic info -->
+                <div class="am-panel am-panel-default">
+                    <div class="am-panel-hd am-cf" data-am-collapse="{target: '#collapse-panel-basic'}">
+                        基本信息<i class="am-icon-chevron-down am-fr"></i>
+                    </div>
+                    <div class="am-panel-bd am-in" id="collapse-panel-basic">
+                        <form id="personal_form" class="am-form am-form-horizontal">
+                            <!-- id is hidden -->
+                            <div class="am-hide am-form-group">
+                                <label for="account_id" class="am-u-sm-3 am-form-label">用户Id</label>
+
+                                <div class="am-u-sm-9">
+                                    <input type="hidden" id="account_id" name="account.id" value="${account.id!}">
+                                </div>
+                            </div>
+
+                            <div class="am-form-group">
+                                <label for="account_username" class="am-u-sm-3 am-form-label">用户名</label>
+
+                                <div class="am-u-sm-9">
+                                    <input type="text" id="account_username" name="account.username"
+                                           value="${account.username!}" placeholder="用户名" disabled>
+                                </div>
+                            </div>
+
+                            <div class="am-form-group">
+                                <label for="account_name" class="am-u-sm-3 am-form-label">姓名</label>
+
+                                <div class="am-u-sm-9">
+                                    <input type="text" id="account_name" name="account.name" value="${account.name!}"
+                                           placeholder="输入你的姓名">
+                                </div>
+                            </div>
+
+                            <div class="am-form-group">
+                                <label for="account_email" class="am-u-sm-3 am-form-label">电子邮件</label>
+
+                                <div class="am-u-sm-9">
+                                    <input type="email" id="account_email" name="account.email"
+                                           value="${account.email!}"
+                                           placeholder="输入你的电子邮件">
+                                </div>
+                            </div>
+
+                            <div class="am-form-group">
+                                <label for="account_phone" class="am-u-sm-3 am-form-label">电话</label>
+
+                                <div class="am-u-sm-9">
+                                    <input type="text" id="account_phone" name="account.phone" value="${account.phone!}"
+                                           placeholder="输入你的电话号码">
+                                </div>
+                            </div>
+
+                            <div class="am-form-group">
+                                <label for="account_qq" class="am-u-sm-3 am-form-label">QQ</label>
+
+                                <div class="am-u-sm-9">
+                                    <input type="text" id="account_qq" name="account.qq" value="${account.qq!}"
+                                           placeholder="输入你的QQ号码">
+                                </div>
+                            </div>
+
+                            <div class="am-form-group">
+                                <label for="account_weibo" class="am-u-sm-3 am-form-label">微博</label>
+
+                                <div class="am-u-sm-9">
+                                    <input type="text" id="account_weibo" name="account.weibo" value="${account.weibo!}"
+                                           placeholder="输入你的微博">
+                                </div>
+                            </div>
+
+                            <div class="am-form-group">
+                                <label for="account_intro" class="am-u-sm-3 am-form-label">简介</label>
+
+                                <div class="am-u-sm-9">
+                                    <textarea class="" rows="5" id="account_intro" name="account.intro"
+                                              placeholder="输入个人简介">${account.intro!}</textarea>
+                                    <small>250字以内写出你的一生(支持Markdown)...</small>
+                                </div>
+                            </div>
+
+                            <div class="am-form-group">
+                                <div class="am-u-sm-9 am-u-sm-push-3">
+                                    <button id="personal_form_submit" type="button" class="am-btn am-btn-default">保存修改
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- modify password -->
+                <div class="am-panel am-panel-default">
+                    <div class="am-panel-hd am-cf" data-am-collapse="{target: '#collapse-panel-modify'}">
+                        修改密码<i class="am-icon-chevron-down am-fr"></i>
+                    </div>
+                    <div class="am-panel-bd am-in" id="collapse-panel-modify">
+                        <form id="personal_modify_form" class="am-form am-form-horizontal">
+                            <!-- id is hidden -->
+                            <div class="am-hide am-form-group">
+                                <label for="a_id" class="am-u-sm-3 am-form-label">用户Id</label>
+
+                                <div class="am-u-sm-9">
+                                    <input type="hidden" id="a_id" name="account.id" value="${account.id!}">
+                                </div>
+                            </div>
+
+                            <div class="am-form-group">
+                                <label for="old_password" class="am-u-sm-3 am-form-label">原密码</label>
+
+                                <div class="am-u-sm-9">
+                                    <input type="password" id="old_password" name="old" placeholder="原密码">
+                                </div>
+                            </div>
+
+                            <div class="am-form-group">
+                                <label for="new_password" class="am-u-sm-3 am-form-label">新密码</label>
+
+                                <div class="am-u-sm-9">
+                                    <input type="password" id="new_password" name="last" placeholder="新密码">
+                                </div>
+                            </div>
+
+                            <div class="am-form-group">
+                                <label for="again_password" class="am-u-sm-3 am-form-label">确认密码</label>
+
+                                <div class="am-u-sm-9">
+                                    <input type="password" id="again_password" name="again" placeholder="确认密码">
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <div class="am-u-sm-9 am-u-sm-push-3">
+                                    <a id="modify_btn" class="am-btn am-btn-default">修改密码</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end content -->
+    <a href="#" class="am-show-sm-only admin-menu" data-am-offcanvas="{target: '#admin-offcanvas'}">
+        <span class="am-icon-btn am-icon-th-list"></span>
+    </a>
+</div>
+
+<!-- footer -->
+<%
+include("/admin/footer.html"){}
+%>
+
+<!-- start script -->
+<!--[if lt IE 9]>
+<script src="/assets/js/jq/jquery-1.11.3.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="/assets/amazeui/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="/assets/js/jq/jquery-2.1.4.js"></script>
+<!--<![endif]-->
+<script src="/assets/amazeui/js/amazeui.min.js"></script>
+
+<!-- layer page -->
+<script src="/assets/laypage/laypage.js"></script>
+<!-- layer -->
+<script src="/assets/layer/layer.js"></script>
+<script src="/assets/layer/extend/layer.ext.js"></script>
+<!-- jquery form -->
+<script src="/assets/js/jq/jquery.form.js"></script>
+<!-- date ext -->
+<script src="/assets/js/date.ext.js"></script>
+<!-- my check kit -->
+<script src="/assets/js/check.kit.js"></script>
+<!-- personal js -->
+<script src="/assets/js/personal.js"></script>
+<script>
+    $(document).ready(function () {
+        console.log("document load finished...");
+        $("#personal_form_submit").on('click', function () {
+            if (personal.check_personal_form()) {
+                personal.submit_personal_form();
+            }
+        });
+        $("#avatar_form_file").on('change', function () {
+            console.log("change...");
+            var load_index;
+            $("#avatar_form").ajaxSubmit({
+                url: '/admin/profile/avatar',
+                type: 'post',
+                dataType: 'json',
+                beforeSend: function () {
+                    /* load_index = layer.load(1,{
+                     shade: [0.1,'#fff'] //0.1透明度的白色背景
+                     });*/
+                    load_index = layer.msg('图片上传中...', {icon: 16});
+                },
+                success: function (r) {
+                    layer.close(load_index);
+                    if (r && r.code == 100) {
+
+                        var $img = new Image();
+                        $img.src = r.data.url;
+                        $img.className = 'am-img-circle am-img-thumbnail';
+                        $img.alt = '个人头像';
+                        $img.id = 'avatar_image';
+
+                        var $pre = $("#avatar_preview");
+                        $pre.html("");
+                        $pre.append($img);
+
+                        layer.msg('上传图片成功!');
+                    } else {
+                        layer.msg('服务器处理图片失败');
+                    }
+                },
+                error: function (r) {
+                    layer.close(load_index);
+                    console.log(r);
+                    layer.msg('连接服务器失败，请检查网络...');
+                }
+            });
+        });
+
+        personal.check_new_password_again();
+
+        $("#modify_btn").on('click', function () {
+            console.log('click modify btn');
+            if (personal.check_personal_modify_form()) {
+                personal.submit_personal_modify_form();
+            }
+        });
+
+    });
+
+</script>
+
+</body>
+
+</html>

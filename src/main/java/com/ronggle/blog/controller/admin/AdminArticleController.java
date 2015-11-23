@@ -13,7 +13,7 @@ import com.ronggle.blog.service.impl.ArticleServiceImpl;
 /**
  * Created by soi on 15-11-4.
  */
-@Before(SessionInterceptor.class)
+//@Before(SessionInterceptor.class)
 public class AdminArticleController extends BaseController {
 
     private ArticleService articleService = Duang.duang(ArticleServiceImpl.class);

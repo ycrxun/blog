@@ -16,6 +16,7 @@
         <junit.version>4.11</junit.version>
         <jfinal.version>2.0</jfinal.version>
         <jfinal.ext.version>3.1.4</jfinal.ext.version>
+        <jfinal.cos.version>26Dec2008</jfinal.cos.version>
         <beetl.version>2.2.6</beetl.version>
         <beetl.sql.version>1.2.0</beetl.sql.version>
         <log4j.version>1.2.17</log4j.version>
@@ -25,6 +26,7 @@
         <servlet.version>3.1.0</servlet.version>
         <jsoup.version>1.8.3</jsoup.version>
         <ehcache.version>2.6.11</ehcache.version>
+        <thumbnailator.version>0.4.8</thumbnailator.version>
     </properties>
 
     <build>
@@ -144,6 +146,12 @@
         </dependency>
         <dependency>
             <groupId>com.jfinal</groupId>
+            <artifactId>cos</artifactId>
+            <version>${jfinal.cos.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.jfinal</groupId>
             <artifactId>jfinal-ext</artifactId>
             <version>${jfinal.ext.version}</version>
         </dependency>
@@ -186,6 +194,12 @@
             <groupId>net.sf.ehcache</groupId>
             <artifactId>ehcache-core</artifactId>
             <version>${ehcache.version}</version>
+        </dependency>
+        <!-- thumbnail generation library for Java -->
+        <dependency>
+            <groupId>net.coobird</groupId>
+            <artifactId>thumbnailator</artifactId>
+            <version>${thumbnailator.version}</version>
         </dependency>
     </dependencies>
 </project>

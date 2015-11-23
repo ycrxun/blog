@@ -48,5 +48,10 @@ public class LinkServiceImpl implements LinkService {
         return Link.dao.findByCache(Dict.LinkCache, "link_list", "select l.* from link as l where 1 = 1 and l.status = ?", Status.ENABLE.status);
     }
 
+    @Override
+    public boolean delete(String linkId) {
+        return Link.dao.deleteById(linkId);
+    }
+
 
 }

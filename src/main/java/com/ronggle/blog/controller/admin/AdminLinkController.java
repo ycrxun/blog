@@ -13,7 +13,7 @@ import com.ronggle.blog.service.impl.LinkServiceImpl;
 /**
  * Created by soi on 15-11-16.
  */
-@Before(SessionInterceptor.class)
+//@Before(SessionInterceptor.class)
 public class AdminLinkController extends BaseController{
 
     private LinkService linkService = Duang.duang(LinkServiceImpl.class);
@@ -62,6 +62,18 @@ public class AdminLinkController extends BaseController{
         }else {
             linkService.save(link);
             success();
+        }
+    }
+
+    /**
+     * delete a link by id
+     */
+    public void delete(){
+        String linkId = getPara(0);
+        if (linkService.delete(linkId)) {
+            success();
+        } else {
+            error();
         }
     }
 }

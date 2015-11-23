@@ -9,14 +9,15 @@ import com.jfinal.kit.Prop;
 import com.jfinal.kit.PropKit;
 import com.jfinal.log.Logger;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
+import com.jfinal.plugin.activerecord.tx.TxByMethods;
+import com.jfinal.plugin.activerecord.tx.TxByRegex;
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.plugin.ehcache.EhCachePlugin;
-import com.ronggle.blog.controller.admin.AdminArticleController;
-import com.ronggle.blog.controller.admin.AdminIndexController;
-import com.ronggle.blog.controller.admin.AdminLinkController;
+import com.ronggle.blog.controller.admin.*;
 import com.ronggle.blog.controller.client.ClientController;
 import com.ronggle.blog.handler.Htmlhandler;
 import com.ronggle.blog.handler.XssHandler;
+import com.ronggle.blog.interceptor.SessionInterceptor;
 import com.ronggle.blog.model.*;
 import org.beetl.ext.jfinal.BeetlRenderFactory;
 
@@ -48,6 +49,7 @@ public class App extends JFinalConfig {
         routes.add("/admin", AdminIndexController.class, Dict.Admin);
         routes.add("/admin/article", AdminArticleController.class, Dict.Admin);
         routes.add("/admin/link", AdminLinkController.class, Dict.Admin);
+        routes.add("/admin/profile", AdminProfileController.class,Dict.Admin);
     }
 
     private void clientRoutes(Routes routes) {
@@ -83,6 +85,7 @@ public class App extends JFinalConfig {
         local_arp.addMapping("link", Link.class);
         local_arp.addMapping("menu", Menu.class);
         local_arp.addMapping("visitor", Visitor.class);
+        local_arp.addMapping("doc",Doc.class);
 
         plugins.add(local_arp);
 
@@ -92,7 +95,11 @@ public class App extends JFinalConfig {
 
     @Override
     public void configInterceptor(Interceptors interceptors) {
-
+        interceptors.add(new SessionInterceptor());
+        interceptors.add(new TxByMethods("save", "update", "delete"));
+        interceptors.add(new TxByRegex(".*save.*"));
+        interceptors.add(new TxByRegex(".*update.*"));
+        interceptors.add(new TxByRegex(".*delete.*"));
     }
 
     @Override

@@ -41,4 +41,11 @@ public interface LinkService {
      * @return list
      */
     List<Link> findLinkByCache();
+
+    /**
+     * delete a link by id
+     * @param linkId link id
+     * @return boolean
+     */
+    boolean delete(String linkId);
 }

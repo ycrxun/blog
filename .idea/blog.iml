@@ -34,6 +34,7 @@
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax.servlet:javax.servlet-api:3.1.0" level="project" />
     <orderEntry type="library" name="Maven: com.jfinal:jfinal:2.0" level="project" />
     <orderEntry type="library" name="Maven: cglib:cglib-nodep:3.1" level="project" />
+    <orderEntry type="library" name="Maven: com.jfinal:cos:26Dec2008" level="project" />
     <orderEntry type="library" name="Maven: com.jfinal:jfinal-ext:3.1.4" level="project" />
     <orderEntry type="library" name="Maven: com.google.guava:guava:18.0" level="project" />
     <orderEntry type="library" name="Maven: com.ibeetl:beetl:2.2.6" level="project" />
@@ -68,5 +69,6 @@
     <orderEntry type="library" name="Maven: org.jsoup:jsoup:1.8.3" level="project" />
     <orderEntry type="library" name="Maven: net.sf.ehcache:ehcache-core:2.6.11" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.6.1" level="project" />
+    <orderEntry type="library" name="Maven: net.coobird:thumbnailator:0.4.8" level="project" />
   </component>
 </module>

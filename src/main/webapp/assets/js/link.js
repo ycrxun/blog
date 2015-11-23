@@ -38,21 +38,21 @@ link.init_link_table = function () {
                                 $(result.data.list).each(function () {
                                     var link_data_table_body_tr = '<tr>' +
                                         '<td>' + this.id + '</td>' +
-                                        '<td><a href="'+this.link+'">' + this.link_name + '</a></td>' +
+                                        '<td><a href="' + this.link + '">' + this.link_name + '</a></td>' +
                                         '<td>' + this.link + '</td>' +
                                         '<td>' + link.link_status(this.status) + '</td>' +
-                                        '<td>' + new Date(this.create_time * 1000).format("yyyy-MM-dd hh:mm:ss") + '</td>'+
+                                        '<td>' + new Date(this.create_time * 1000).format("yyyy-MM-dd hh:mm:ss") + '</td>' +
                                         '<td>' +
-                                            '<div class="am-btn-toolbar">' +
-                                                '<div class="am-btn-group am-btn-group-xs">' +
-                                                    '<a class="am-btn am-btn-default am-btn-xs am-text-secondary" onclick="link.update_link(\''+this.id+'\')"><span class="am-icon-pencil-square-o"></span> 编辑' +
-                                                    '</a>' +
-                                                    '<a class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only" onclick="link.delete_link(\''+this.id+'\')"><span class="am-icon-trash-o"></span> 删除' +
-                                                    '</a>' +
-                                                '</div>' +
-                                            '</div>' +
+                                        '<div class="am-btn-toolbar">' +
+                                        '<div class="am-btn-group am-btn-group-xs">' +
+                                        '<a class="am-btn am-btn-default am-btn-xs am-text-secondary" onclick="link.update_link(\'' + this.id + '\')"><span class="am-icon-pencil-square-o"></span> 编辑' +
+                                        '</a>' +
+                                        '<a class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only" onclick="link.delete_link(\'' + this.id + '\')"><span class="am-icon-trash-o"></span> 删除' +
+                                        '</a>' +
+                                        '</div>' +
+                                        '</div>' +
                                         '</td>' +
-                                    '</tr>';
+                                        '</tr>';
                                     link_data_table_body.append(link_data_table_body_tr);
                                 });
                             }
@@ -82,29 +82,38 @@ link.link_status = function (status) {
 /**
  * add link
  */
-link.plus_link = function(){
+link.plus_link = function () {
     console.log("add a link");
     layer.open({
         type: 2,
         title: '新增友链',
         shadeClose: true, //点击遮罩关闭层
-        area : ['650px' , '380px'],
+        area: ['650px', '380px'],
         content: '/admin/link/add'
     });
 };
 
-link.update_link = function(link_id){
+link.update_link = function (link_id) {
     console.log("update a link by id " + link_id);
     layer.open({
         type: 2,
         title: '新增友链',
         shadeClose: true, //点击遮罩关闭层
-        area : ['650px' , '380px'],
-        content: '/admin/link/update/'+link_id
+        area: ['650px', '380px'],
+        content: '/admin/link/update/' + link_id
     });
 };
 
 link.delete_link = function (link_id) {
-    //layer.confirm();
+    layer.confirm('你确定要删除吗？', {
+        btn: ['确定', '取消']
+    }, function () {
+        $.getJSON('/admin/link/delete/'+ link_id,{}, function (result) {
+            if(result && result.code == 100){
+                link.init_link_table();
+                layer.msg('删除成功', {icon: 1});
+            }
+        });
+    });
 };
 

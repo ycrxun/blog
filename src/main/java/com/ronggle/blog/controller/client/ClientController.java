@@ -1,10 +1,9 @@
 package com.ronggle.blog.controller.client;
 
+import com.jfinal.aop.Clear;
 import com.jfinal.aop.Duang;
 import com.jfinal.core.ActionKey;
 import com.jfinal.plugin.activerecord.Page;
-import com.jfinal.plugin.activerecord.Record;
-import com.jfinal.plugin.ehcache.CacheKit;
 import com.ronggle.blog.controller.BaseController;
 import com.ronggle.blog.model.*;
 import com.ronggle.blog.service.ArticleService;
@@ -31,72 +30,66 @@ public class ClientController extends BaseController {
     /**
      * index page
      */
+    @Clear
     public void index() {
         //statistical request guest write into database
         Visitor visitor = new Visitor();
         visitor.set("visitor_ip", getRequest().getRemoteAddr());
         visitorService.save(visitor);
         //render to index page
-        render("index.html");
+        setAttr("title", "Soi个人博客-首页").render("index.html");
     }
 
     /**
      * article list
      */
+    @Clear
     @ActionKey("article")
     public void article() {
         pageNow = getParaToInt(0) > 0 ? getParaToInt(0) : 1;
         pageSize = getParaToInt(1) > 0 ? getParaToInt(1) : pageSize;
-        Page<Article> page = CacheKit.get("ArticleCache", "page_" + pageNow);
-        if (null == page) {
-            page = articleService.findArticle(pageNow, pageSize);
-            CacheKit.put("ArticleCache", "page_" + pageNow, page);
-        }
-        setAttr("page", page).render("article.html");
+        Page<Article> page = articleService.findArticle(pageNow, pageSize);
+        setAttr("title", "Soi个人博客-文章列表").setAttr("page", page).render("article.html");
     }
 
     /**
      * article detail
      */
+    @Clear
     @ActionKey("/article/detail")
     public void detail() {
         String articleId = getPara(0);
         //update hit
         articleService.updateHit(articleId);
         Article article = articleService.findArticleById(articleId);
-        setAttr("article", article).render("detail.html");
+        setAttr("title", "Soi个人博客-文章详情-" + article.get("title")).setAttr("article", article).render("detail.html");
     }
 
     /**
      * get hot article list
      */
+    @Clear
     @ActionKey("/article/hot")
     public void hot() {
-        List<Article> hot = CacheKit.get(Dict.ArticleCache, Dict.HotArticle);
-        if (null == hot) {
-            hot = articleService.findHotArticle(Dict.HotPageSize).getList();
-            CacheKit.put(Dict.ArticleCache, Dict.HotArticle, hot);
-        }
-        renderJsonForIE(new Record().set("code", 100).set("message", "request success").set("data", hot));
+        List<Article> hot = articleService.findHotArticle(Dict.HotPageSize).getList();
+        success(hot);
     }
 
     /**
      * get last publish article
      */
+    @Clear
     @ActionKey("/article/last")
     public void last() {
-        List<Article> last = CacheKit.get(Dict.ArticleCache, Dict.LastArticle);
-        if (null == last) {
-            last = articleService.findLastArticle(Dict.LastPageSize).getList();
-            CacheKit.put(Dict.ArticleCache, Dict.LastArticle, last);
-        }
-        renderJsonForIE(new Record().set("code", 100).set("message", "request success").set("data", last));
+        List<Article> last = articleService.findLastArticle(Dict.LastPageSize).getList();
+        success(last);
     }
 
     /**
      * reply article by id <br/>
      * use ajax submit
      */
+    @Clear
     @ActionKey("/article/reply/put")
     public void put() {
         //String articleId = getPara(0);
@@ -105,17 +98,14 @@ public class ClientController extends BaseController {
         replyService.save(reply);
         //update article reply
         articleService.updateReply(reply.getStr("article_id"));
-        //clear reply cache
-        CacheKit.removeAll(Dict.ReplyCache);
-        //update hot cache
-        CacheKit.put(Dict.ArticleCache, Dict.HotArticle, articleService.findLastArticle(Dict.LastPageSize).getList());
         //render json
-        renderJsonForIE(new Record().set("code", 100).set("message", "request successful...").set("data", reply));
+        success(reply);
     }
 
     /**
      * get reply by article id and page number
      */
+    @Clear
     @ActionKey("/article/reply")
     public void reply() {
         String articleId = getPara("articleId");
@@ -127,16 +117,13 @@ public class ClientController extends BaseController {
         if (null == pageSize || pageSize < 1) {
             pageSize = Dict.PageSize - 5;
         }
-        Page<Reply> replyPage = CacheKit.get(Dict.ReplyCache, "reply_" + articleId + "_" + pageNow);
-        if (null == replyPage) {
-            replyPage = replyService.findReplyByArticleId(articleId, pageNow, pageSize);
-            CacheKit.put(Dict.ReplyCache, "reply_" + articleId + "_" + pageNow, replyPage);
-        }
-        renderJsonForIE(new Record().set("code", 100).set("message", "request successful").set("data", replyPage));
+        Page<Reply> replyPage = replyService.findReplyByArticleId(articleId, pageNow, pageSize);
+        success(replyPage);
     }
 
+    @Clear
     @ActionKey("/link")
-    public void link(){
+    public void link() {
         List<Link> links = linkService.findLinkByCache();
         success(links);
     }
@@ -144,8 +131,9 @@ public class ClientController extends BaseController {
     /**
      * get about page
      */
+    @Clear
     @ActionKey("/about")
     public void about() {
-        render("about.html");
+        setAttr("title", "Soi个人博客-关于").render("about.html");
     }
 }

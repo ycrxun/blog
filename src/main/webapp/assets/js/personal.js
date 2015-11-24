@@ -98,6 +98,7 @@ personal.submit_personal_modify_form = function () {
         success: function (r) {
             if (r && r.code == 100) {
                 layer.msg(r.message);
+                modify_form[0].reset();
             }
         },
         error: function (r) {

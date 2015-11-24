@@ -12,6 +12,8 @@ import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.activerecord.tx.TxByMethods;
 import com.jfinal.plugin.activerecord.tx.TxByRegex;
 import com.jfinal.plugin.druid.DruidPlugin;
+import com.jfinal.plugin.druid.DruidStatViewHandler;
+import com.jfinal.plugin.druid.IDruidStatViewAuth;
 import com.jfinal.plugin.ehcache.EhCachePlugin;
 import com.ronggle.blog.controller.admin.*;
 import com.ronggle.blog.controller.client.ClientController;
@@ -20,6 +22,8 @@ import com.ronggle.blog.handler.XssHandler;
 import com.ronggle.blog.interceptor.SessionInterceptor;
 import com.ronggle.blog.model.*;
 import org.beetl.ext.jfinal.BeetlRenderFactory;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Created by Administrator on 2015/10/30.
@@ -49,7 +53,7 @@ public class App extends JFinalConfig {
         routes.add("/admin", AdminIndexController.class, Dict.Admin);
         routes.add("/admin/article", AdminArticleController.class, Dict.Admin);
         routes.add("/admin/link", AdminLinkController.class, Dict.Admin);
-        routes.add("/admin/profile", AdminProfileController.class,Dict.Admin);
+        routes.add("/admin/profile", AdminProfileController.class, Dict.Admin);
     }
 
     private void clientRoutes(Routes routes) {
@@ -85,7 +89,7 @@ public class App extends JFinalConfig {
         local_arp.addMapping("link", Link.class);
         local_arp.addMapping("menu", Menu.class);
         local_arp.addMapping("visitor", Visitor.class);
-        local_arp.addMapping("doc",Doc.class);
+        local_arp.addMapping("doc", Doc.class);
 
         plugins.add(local_arp);
 
@@ -110,10 +114,15 @@ public class App extends JFinalConfig {
         handlers.add(new Htmlhandler());
         //排除后台管理请求的Xss过滤
         handlers.add(new XssHandler("/admin"));
-    }
+        //add druid handler
+        handlers.add(new DruidStatViewHandler("/admin/data", new IDruidStatViewAuth() {
 
-    public static void main(String[] args) {
-        System.out.println(HashKit.md5("admin"));
+            @Override
+            public boolean isPermitted(HttpServletRequest request) {
+                //if admin session not null,show druid stat view
+                return null != request.getSession().getAttribute(Dict.ADMIN_SESSION);
+            }
+        }));
     }
 
 }

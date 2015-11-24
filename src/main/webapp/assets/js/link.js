@@ -37,17 +37,17 @@ link.init_link_table = function () {
                                 //each data list
                                 $(result.data.list).each(function () {
                                     var link_data_table_body_tr = '<tr>' +
-                                        '<td>' + this.id + '</td>' +
+                                        '<td class="am-hide-sm-only">' + this.id + '</td>' +
                                         '<td><a href="' + this.link + '">' + this.link_name + '</a></td>' +
-                                        '<td>' + this.link + '</td>' +
+                                        '<td class="am-hide-sm-only">' + this.link + '</td>' +
                                         '<td>' + link.link_status(this.status) + '</td>' +
-                                        '<td>' + new Date(this.create_time * 1000).format("yyyy-MM-dd hh:mm:ss") + '</td>' +
+                                        '<td class="am-hide-sm-only">' + new Date(this.create_time * 1000).format("yyyy-MM-dd hh:mm:ss") + '</td>' +
                                         '<td>' +
                                         '<div class="am-btn-toolbar">' +
                                         '<div class="am-btn-group am-btn-group-xs">' +
                                         '<a class="am-btn am-btn-default am-btn-xs am-text-secondary" onclick="link.update_link(\'' + this.id + '\')"><span class="am-icon-pencil-square-o"></span> 编辑' +
                                         '</a>' +
-                                        '<a class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only" onclick="link.delete_link(\'' + this.id + '\')"><span class="am-icon-trash-o"></span> 删除' +
+                                        '<a class="am-btn am-btn-default am-btn-xs am-text-danger" onclick="link.delete_link(\'' + this.id + '\')"><span class="am-icon-trash-o"></span> 删除' +
                                         '</a>' +
                                         '</div>' +
                                         '</div>' +

@@ -27,7 +27,7 @@ article.initTable = function () {
                     dataTableTbody.empty();
                     $(result.data.list).each(function () {
                         var tr = '<tr>' +
-                            '<td>' + this.id + '</td>' +
+                            '<td class="am-hide-sm-only">' + this.id + '</td>' +
                             '<td><a href="/admin/article/detail/' + this.id + '">' + this.title + '</a></td>' +
                             '<td>' + this.article_type + '</td>' +
                             '<td class="am-hide-sm-only">' + new Date(this.create_time * 1000).format("yyyy-MM-dd hh:mm:ss") + '</td>' +
@@ -37,7 +37,7 @@ article.initTable = function () {
                             '<div class="am-btn-group am-btn-group-xs">' +
                             '<a href="/admin/article/detail/' + this.id + '" class="am-btn am-btn-default am-btn-xs am-text-secondary">' +
                             '<span class="am-icon-pencil-square-o"></span> 编辑 </a>' +
-                            '<a href="/admin/article/delete/' + this.id + '" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">' +
+                            '<a href="/admin/article/delete/' + this.id + '" class="am-btn am-btn-default am-btn-xs am-text-danger">' +
                             '<span class="am-icon-trash-o"></span> 删除 </a>' +
                             '</div>' +
                             '</div>' +

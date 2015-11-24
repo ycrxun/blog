@@ -3,7 +3,6 @@ package com.ronggle.blog.controller.admin;
 import com.jfinal.aop.Duang;
 import com.jfinal.kit.HashKit;
 import com.jfinal.kit.PathKit;
-import com.jfinal.kit.StrKit;
 import com.jfinal.plugin.activerecord.Record;
 import com.ronggle.blog.controller.BaseController;
 import com.ronggle.blog.model.*;
@@ -13,7 +12,6 @@ import com.ronggle.blog.service.impl.AccountServiceImpl;
 import com.ronggle.blog.service.impl.DocServiceImpl;
 import com.ronggle.blog.utils.FileUtil;
 import com.ronggle.blog.utils.ImageUtil;
-import com.ronggle.blog.utils.StringUtil;
 
 /**
  * Created by soi on 15-11-17.
@@ -39,10 +37,6 @@ public class AdminProfileController extends BaseController {
         } else {
             error(101, "alter fail");
         }
-    }
-
-    public void settings(){
-        render("profile/settings.html");
     }
 
     /**
@@ -92,14 +86,6 @@ public class AdminProfileController extends BaseController {
         } else {
             error(101, "upload image error");
         }
-    }
-
-    /**
-     * upload avatar<br/>
-     * avatar save path->/static/avatar/2015/11/18/211121222222211.png<br/>
-     */
-    public void upload() {
-
     }
 
     /**

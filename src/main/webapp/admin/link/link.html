@@ -7,6 +7,14 @@
     <link rel="shortcut icon" type="image/x-icon" href="/assets/images/favicon.ico">
     <title>友链列表</title>
 
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Soi个人博客"/>
+
     <!-- 引入Amaze css -->
     <link rel="stylesheet" href="/assets/amazeui/css/amazeui.min.css"/>
 
@@ -31,8 +39,8 @@
     <div class="admin-content">
 
         <div class="am-cf am-padding">
-            <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">首页</strong> /友链管理/
-                <small>友链列表</small>
+            <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">友链列表</strong> /
+                <small>Link list</small>
             </div>
         </div>
 
@@ -72,11 +80,11 @@
                 <table id="link_table" class="am-table am-table-striped am-table-hover table-main">
                     <thead>
                     <tr>
-                        <th class="table-id">Id</th>
+                        <th class="table-id am-hide-sm">Id</th>
                         <th class="table-title">友链名称</th>
-                        <th class="table-type">链接地址</th>
+                        <th class="table-type am-hide-sm">链接地址</th>
                         <th class="table-type">状态</th>
-                        <th class="table-date">发布日期</th>
+                        <th class="table-date am-hide-sm">发布日期</th>
                         <th class="table-set">操作</th>
                     </tr>
                     </thead>

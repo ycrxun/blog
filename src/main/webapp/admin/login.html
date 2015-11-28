@@ -17,10 +17,11 @@
     <meta name="apple-mobile-web-app-title" content="Soi个人博客"/>
 
     <!-- 引入Materialize css -->
-    <link rel="stylesheet" href="../assets/materialize/css/materialize.min.css">
-    <link rel="stylesheet" href="../assets/css/prism.css">
-    <link rel="stylesheet" href="../assets/css/style-fullscreen.css">
-    <link rel="stylesheet" href="../assets/css/perfect-scrollbar.css" media="screen,projection">
+    <link rel="stylesheet" href="/assets/materialize/css/materialize.min.css">
+    <link rel="stylesheet" href="/assets/css/prism.css">
+    <link rel="stylesheet" href="/assets/css/style-fullscreen.css">
+    <link rel="stylesheet" href="/assets/css/perfect-scrollbar.css" media="screen,projection">
+    <link rel="stylesheet" type="text/css" href="/assets/layer/skin/layer.css">
 
     <style>
         html, body {
@@ -43,7 +44,7 @@
 <body>
 <div id="login-page" class="row" style="width: 400px;">
     <div class="col s12 z-depth-4 card-panel">
-        <form class="login-form" action="/admin/token" method="post">
+        <form id="login_form" class="login-form" action="/admin/token" method="post">
             <div class="row margin">
                 <div class="input-field col s12 center">
                     <h5 class="center login-form-text teal-text">后台登录</h5>
@@ -71,15 +72,67 @@
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <button type="submit" class="btn waves-effect waves-light col s12">登录</button>
+                    <button id="submit" type="button" class="btn waves-effect waves-light col s12">登录</button>
                 </div>
             </div>
         </form>
     </div>
 </div>
 
-<script src="../assets/js/jq/jquery-1.11.3.js"></script>
-<script src="../assets/materialize/js/materialize.min.js"></script>
-
+<script src="/assets/js/jq/jquery-1.11.3.js"></script>
+<script src="/assets/materialize/js/materialize.min.js"></script>
+<script type="text/javascript" src="/assets/layer/layer.js"></script>
+<script type="text/javascript">
+       $(document).ready(function(){
+            $('#submit').on('click',function () {
+                // body...
+                submit_form();
+            });
+        
+            document.onkeydown = function(e){
+                var ev = document.all ? window.event : e;
+                if(ev.keyCode==13) {
+                    submit_form();
+                }
+             }
+       });
+                
+        function submit_form(){
+            if (check_form()) {
+                $.post('/admin/token',$('#login_form').serialize(),function(r){
+                    if(r){
+                        r = $.parseJSON(r);
+                        console.log(r);
+                        if(r.code == 100) {
+                            layer.msg(r.message);
+                            location.href = "/admin";
+                        } else if(r.code == 101){
+                            layer.msg(r.message);
+                            $('#password').val() = '';
+                        }
+                    } else {
+                        layer.msg('网络异常');
+                    }
+                });
+            };
+        }
+        
+        function check_form () {
+            // body...
+            if ($.trim($('#username').val()) == '') {
+                layer.msg('用户名不能为空！',{
+                    icon:5
+                });
+                return false;
+            };
+            if ($.trim($('#password').val()) == '') {
+                layer.msg('密码不能为空！',{
+                    icon:5
+                });
+                return false;
+            };
+            return true;
+        }
+</script>
 </body>
 </html>

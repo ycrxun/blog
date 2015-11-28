@@ -46,8 +46,8 @@ public class ClientController extends BaseController {
     @Clear
     @ActionKey("article")
     public void article() {
-        pageNow = getParaToInt(0) > 0 ? getParaToInt(0) : 1;
-        pageSize = getParaToInt(1) > 0 ? getParaToInt(1) : pageSize;
+        pageNow = getParaToInt(0, 1) ;
+        pageSize = getParaToInt(1, Dict.PageSize);
         Page<Article> page = articleService.findArticle(pageNow, pageSize);
         setAttr("title", "Soi个人博客-文章列表").setAttr("page", page).render("article.html");
     }

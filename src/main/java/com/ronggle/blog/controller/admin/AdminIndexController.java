@@ -48,14 +48,15 @@ public class AdminIndexController extends BaseController {
                 account.set("last_login_ip", getRequest().getRemoteAddr());
                 accountService.save(account);
                 //redirect to index page
-                redirect("/admin");
+                //redirect("/admin");
+                success(100,"登录成功");
             } else {
-                setAttr("msg", "帐号已锁定");
-                redirect("/admin/login");
+                error(101, "帐号已锁定");
+                //redirect("/admin/login");
             }
         } else {
-            setAttr("msg", "用户名或密码错误");
-            redirect("/admin/login");
+            error(101, "用户名或密码错误");
+            //redirect("/admin/login");
         }
     }
 

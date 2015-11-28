@@ -48,12 +48,12 @@ public class TestFile {
     
     @Test
     public void testResize(){
-        ImageUtil.resize(20,20,300,300,"/home/soi/012133dsa4toxud8snsbo1.jpg","/home/soi/012.jpg");
+        //ImageUtil.resize(20,20,300,300,"/home/soi/012133dsa4toxud8snsbo1.jpg","/home/soi/012.jpg");
     }
 
     @Test
     public void testForceSize(){
-        ImageUtil.forceSize(160,160,"/home/soi/xn.png","/home/soi/04.png");
+        ImageUtil.forceSize(360,270,"/home/soi/workspace/blog/src/main/webapp/assets/images/25.jpg","/home/soi/workspace/blog/src/main/webapp/assets/images/25.jpg");
     }
 
 }

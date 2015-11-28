@@ -92,3 +92,8 @@ h2 {
 .mobile-mode li a {
     color: #ffffff;
 }
+
+#article_content img {
+    max-width: 100%;
+    height: auto;
+}

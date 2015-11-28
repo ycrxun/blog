@@ -24,6 +24,17 @@ include("/front/layout/header.html"){}
                             <div id="article_content" class="hiddendiv">
                                 <textarea id="article_content_area">${article.content!}</textarea>
                             </div>
+                            <div class="bshare-custom icon-medium right">
+                                <div class="bsPromo bsPromo2"></div>
+                                <a title="分享到QQ空间" class="bshare-qzone"></a>
+                                <a title="分享到QQ好友" class="bshare-qqim" href="javascript:void(0);"></a>
+                                <a title="分享到新浪微博" class="bshare-sinaminiblog"></a>
+                                <a title="分享到人人网" class="bshare-renren"></a>
+                                <a title="分享到腾讯微博" class="bshare-qqmb"></a>
+                                <a title="分享到网易微博" class="bshare-neteasemb"></a>
+                                <a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a>
+                                <span class="BSHARE_COUNT bshare-share-count" style="float: none;">42.6K</span>
+                            </div>
                         </li>
                     </ul>
 
@@ -95,7 +106,6 @@ include("/front/layout/header.html"){}
             </div>
         </div>
     </div>
-    <a href="#top" class="btn-floating btn-large waves-effect waves-light blue right">Top</a>
 </div>
 
 <!--footer-->
@@ -108,37 +118,21 @@ include("/front/layout/footer.html"){}
 <script src="/assets/laypage/laypage.js"></script>
 <script src="/markdown/lib/marked.min.js"></script>
 <script src="/assets/js/client.js"></script>
-
+<script type="text/javascript" src="/assets/js/goto.js"></script>
+<script type="text/javascript" charset="utf-8"
+        src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=2&amp;lang=zh"></script>
+<script type="text/javascript" charset="utf-8"
+        src="http://static.bshare.cn/b/bshareC0.js"></script>
 <script>
     $(document).ready(function () {
-        console.debug("document load finished...");
-
-        console.log("init mobile mode nav");
         $(".button-collapse").sideNav();
-
         layout_right.load_last_article_list();
         layout_right.load_hot_article_list();
-
         detail.init_time();
         detail.init_article_content();
         detail.init_reply_list();
-
         link.init_link_list();
-
-        console.log("init text area character count...");
         $("input#reply_content").characterCounter();
-
-        /* console.log("init editormd...");
-         var md = editormd("reply_content", {
-         width: "98%",
-         height: 400,
-         path: "/markdown/lib/",
-         watch: false,
-         toolbarIcons: function () {
-         return editormd.toolbarModes["simple"];
-         //return ["undo", "redo", "|", "bold", "hr", "|", "preview", "watch", "|", "fullscreen", "info"];
-         }
-         });*/
     });
 </script>
 <%

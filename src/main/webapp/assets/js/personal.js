@@ -63,7 +63,7 @@ personal.check_personal_modify_form = function () {
         return false;
     }
 
-    if(kit.eqn("#new_password","#again_password")){
+    if (kit.eqn("#new_password", "#again_password")) {
         layer.msg('两次输入不一致');
         return false;
     }
@@ -96,9 +96,15 @@ personal.submit_personal_modify_form = function () {
         type: 'post',
         dataType: 'json',
         success: function (r) {
-            if (r && r.code == 100) {
-                layer.msg(r.message);
-                modify_form[0].reset();
+            if (r) {
+                if (r.code == 100) {
+                    layer.msg(r.message + '10秒后自动注销登录', function () {
+                        setTimeout('personal.logout()', 10 * 1000);
+                    });
+                    modify_form[0].reset();
+                } else {
+                    layer.msg(r.message);
+                }
             }
         },
         error: function (r) {
@@ -106,4 +112,8 @@ personal.submit_personal_modify_form = function () {
             layer.msg('修改失败');
         }
     });
+};
+
+personal.logout = function () {
+    location.href = '/admin/logout';
 };

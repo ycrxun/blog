@@ -47,7 +47,6 @@ include("/front/layout/header.html"){}
             </div>
         </div>
     </div>
-    <a href="#top" class="btn-floating btn-large waves-effect waves-light blue right">Top</a>
 </div>
 
 <!--footer-->
@@ -58,18 +57,13 @@ include("/front/layout/footer.html"){}
 <script src="/assets/js/jq/jquery-1.11.3.js"></script>
 <script src="/assets/materialize/js/materialize.min.js"></script>
 <script src="/assets/js/client.js"></script>
+<script type="text/javascript" src="/assets/js/goto.js"></script>
 <script>
     $(document).ready(function () {
-        console.debug("document load finished...");
-
-        console.log("init mobile mode nav");
         $(".button-collapse").sideNav();
-
         layout_right.load_last_article_list();
         layout_right.load_hot_article_list();
-
         link.init_link_list();
-        
     });
 </script>
 <%

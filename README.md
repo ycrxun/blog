@@ -1,2 +1,2 @@
 # blog
-## This is my blog base on [JFinal](http://www.jfinal.com)
+## This is my blog.

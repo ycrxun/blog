@@ -1,5 +1,6 @@
 # blog
 ## This is my blog.  
+[![Build Status](https://travis-ci.org/ycrxun/blog.svg?branch=master)](https://travis-ci.org/ycrxun/blog)
 ### gitting  and started
 - Install JDK1.8
 - Install Maven

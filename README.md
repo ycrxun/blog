@@ -1,7 +1,7 @@
 # blog
 ## This is my blog.  
 [![Build Status](https://travis-ci.org/ycrxun/blog.svg?branch=master)](https://travis-ci.org/ycrxun/blog)
-[![Code Coveralls](https://img.shields.io/coveralls/ycrxun/blog.svg)](https://coveralls.io/r/ycrxun/blog)
+[![Coverage Status](https://coveralls.io/repos/github/ycrxun/blog/badge.svg)](https://coveralls.io/github/ycrxun/blog)
 ### gitting  and started
 - Install JDK1.8
 - Install Maven

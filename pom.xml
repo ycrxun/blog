@@ -24,7 +24,7 @@
         <fastjson.version>1.2.83</fastjson.version>
         <mysql.driver.version>8.0.28</mysql.driver.version>
         <servlet.version>3.1.0</servlet.version>
-        <jsoup.version>1.14.2</jsoup.version>
+        <jsoup.version>1.15.3</jsoup.version>
         <ehcache.version>2.6.11</ehcache.version>
         <thumbnailator.version>0.4.8</thumbnailator.version>
     </properties>
